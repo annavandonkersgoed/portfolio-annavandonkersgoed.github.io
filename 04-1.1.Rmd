@@ -1,0 +1,3 @@
+# opdracht 1.1
+
+Hier komt de uitwerking van het C.elegans plate experiment 
