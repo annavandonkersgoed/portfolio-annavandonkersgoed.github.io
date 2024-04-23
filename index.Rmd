@@ -1,15 +1,10 @@
 ---
 title: "Portfolio DataScience for Biology"
 author: "Anna van Donkersgoed"
+date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+output: bookdown::gitbook
 documentclass: book
-output:
-  bookdown::gitbook: default
-  #bookdown::pdf_book: default
 ---
 
-# Hello World
-
-Hi.
-
-Bye.
+Dit is het portfolio van Anna van Donkersgoed 
