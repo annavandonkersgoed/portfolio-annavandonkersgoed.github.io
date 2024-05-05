@@ -3,10 +3,33 @@
 Hier komt mijn relational databases te staan 
 
 #Laad the fku data in drie verschillende dataframes in R 
+
+#gapminder, Health and income outcomes for 184 countries from 1960 to 2016
+
+install.packages("dslabs")
 library(dslabs)
-library(readr)
+head(gapminder)
+
+#download dengue_data.csv
+library(tidyverse)
+dengue_data <- read_csv(here::here("data", "dengue_data.csv"), skip = 11)
+
+
+#dowload flu_data.csv
+library(tidyverse)
+flu_data <- read_csv(here::here("data", "flu_data.csv"), skip = 11)
+head(flu_data)
 
 #Check of de data tidy is, zo niet verander het naar tidy data
+##De data is niet tidy. Er zijn veel na values aanwezig. Niet elke variabelen heeft een eigen kolom en niet elke observatie heeft een eigen rij. Je wilt het liefst onderscheiden per jaar, maand, dag, land etc 
+
+
+
+
+
+
+
+
 
 #Verander de country en date variabelen van de drie data tabellen zodat ze met elkaar overeenkomen op data type, klasse en waarden. 
 
