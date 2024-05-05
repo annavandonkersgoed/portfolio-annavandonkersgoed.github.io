@@ -1,3 +1,29 @@
 # Opdracht 7
 
 Hier komt mijn relational databases te staan 
+
+#Laad the fku data in drie verschillende dataframes in R 
+library(dslabs)
+library(readr)
+
+#Check of de data tidy is, zo niet verander het naar tidy data
+
+#Verander de country en date variabelen van de drie data tabellen zodat ze met elkaar overeenkomen op data type, klasse en waarden. 
+
+#Bewaar de 3 tabellen als .csv en .rds bestanden 
+
+#Maak in Dbeaver een nieuwe PostgreSQL database genaamd workflowsdb
+
+#voeg de tabellen in de database 
+
+#inspecteer de inhoud van de databse met sql en bewaar het sql script 
+
+#inspecteer de inhoud van de tabellen met dplyr in R 
+
+#laad de gapminder data in R en verander de dataframe zodat dit samengevoegd kan worden met dengue en flu
+
+#Voer joins uit met sql 
+
+#maak een samengevoegde tabel en export dit van de database naar R
+
+#Voer statistiek uit op de tabel 
