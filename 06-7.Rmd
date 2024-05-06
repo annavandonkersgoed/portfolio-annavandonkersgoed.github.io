@@ -27,7 +27,7 @@ head(flu_data)
 dengue_tidy <- pivot_longer(data = dengue_data, cols = c('Argentina', 'Bolivia', 'Brazil', 'India', 'Indonesia', 'Mexico', 'Philippines', 'Singapore', 'Thailand', 'Venezuela),  
                              names_to = "Country",  values_to = "cases")
 
-
+dengue_tidy
 
 
 
