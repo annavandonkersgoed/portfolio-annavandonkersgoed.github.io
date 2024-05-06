@@ -13,7 +13,7 @@ head(gapminder)
 #download dengue_data.csv
 library(tidyverse)
 dengue_data <- read_csv(here::here("data", "dengue_data.csv"), skip = 11)
-
+head(dengue_data)
 
 #dowload flu_data.csv
 library(tidyverse)
@@ -21,7 +21,12 @@ flu_data <- read_csv(here::here("data", "flu_data.csv"), skip = 11)
 head(flu_data)
 
 #Check of de data tidy is, zo niet verander het naar tidy data
-##De data is niet tidy. Er zijn veel na values aanwezig. Niet elke variabelen heeft een eigen kolom en niet elke observatie heeft een eigen rij. Je wilt het liefst onderscheiden per jaar, maand, dag, land etc 
+##De data is niet tidy. Er zijn veel na values aanwezig. Niet elke variabelen heeft een eigen kolom en niet elke observatie heeft een eigen rij. Je wilt het liefst onderscheiden per jaar, maand, dag, land etc  
+
+#dengue dataset veranderen naar tidy data
+dengue_tidy <- pivot_longer(data = dengue_data, cols = c('Argentina', 'Bolivia', 'Brazil', 'India', 'Indonesia', 'Mexico', 'Philippines', 'Singapore', 'Thailand', 'Venezuela),  
+                             names_to = "Country",  values_to = "cases")
+
 
 
 
