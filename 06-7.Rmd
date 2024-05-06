@@ -24,23 +24,57 @@ head(flu_data)
 ##De data is niet tidy. Er zijn veel na values aanwezig. Niet elke variabelen heeft een eigen kolom en niet elke observatie heeft een eigen rij. Je wilt het liefst onderscheiden per jaar, maand, dag, land etc  
 
 #dengue dataset veranderen naar tidy data
-dengue_tidy <- pivot_longer(data = dengue_data, cols = c('Argentina', 'Bolivia', 'Brazil', 'India', 'Indonesia', 'Mexico', 'Philippines', 'Singapore', 'Thailand', 'Venezuela),  
-                             names_to = "Country",  values_to = "cases")
+#Check welke landen er zijn 
+colnames(dengue_data)
+dengue_tidy <- pivot_longer(data = dengue_data, cols = c('Argentina':'Venezuela'),  
+                             names_to = "country",  values_to = "cases")
 
-dengue_tidy
+dengue_tidydata <- separate(dengue_tidy, Date, into = c("year", "month", "day")) 
 
+#flu dataset veranderen naar tidy data 
+#Check welke landen er zijn 
+colnames(flu_data)
+flu_tidy <- pivot_longer(data = flu_data, cols = c('Argentina':'Uruguay'),  
+                             names_to = "country",  values_to = "cases")
 
-
-
-
-
+flu_tidydata <- separate(flu_tidy, Date, into = c("year", "month", "day"))
 
 
 #Verander de country en date variabelen van de drie data tabellen zodat ze met elkaar overeenkomen op data type, klasse en waarden. 
 
+gapminder_tbl <- tibble(gapminder)
+
+#data type komen niet met elkaar overeen 
+##Year:int, country:factor
+
+#country as factor 
+flu_tidydata$country <- factor(flu_tidydata$country) 
+dengue_tidydata$country <- factor(dengue_tidydata$country) 
+
+#year as int 
+flu_tidydata$year <- as.integer(flu_tidydata$year) 
+dengue_tidydata$year <- as.integer(dengue_tidydata$year) 
+
+#dubbel checken:
+flu_tidydata
+dengue_tidydata
+gapminder_tbl
+
 #Bewaar de 3 tabellen als .csv en .rds bestanden 
+#Bewaren als .csv file 
+
+write.csv(flu_tidydata, here::here("data", "flu_tidydata.csv"), row.names = FALSE)
+write.csv(dengue_tidydata, here::here("data", "dengue_tidydata.csv"), row.names = FALSE)
+write.csv(gapminder_tbl, here::here("data", "gapminder_tidydata.csv"), row.names = FALSE)
+
+#Bewaren als .rds file
+saveRDS(flu_tidydata, file = here::here("data", "flu_tidydata.rds"))
+saveRDS(dengue_tidydata, file = here::here("data", "dengue_tidydata.rds"))
+saveRDS(gapminder_tbl, file = here::here("data", "gapminder_tidydata.rds"))
 
 #Maak in Dbeaver een nieuwe PostgreSQL database genaamd workflowsdb
+
+
 
 #voeg de tabellen in de database 
 
