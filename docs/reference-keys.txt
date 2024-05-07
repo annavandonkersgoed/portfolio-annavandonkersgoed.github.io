@@ -1,0 +1,10 @@
+introduction
+cirriculum-vitea
+looking-ahead
+guerilla-analytics
+c.elegans-plate-experiment
+open-peer-review
+reletional-databases
+r-package
+r-markdown
+covid-19-data
