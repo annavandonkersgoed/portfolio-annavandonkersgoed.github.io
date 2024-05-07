@@ -3,7 +3,9 @@ title: "Portfolio DataScience for Biology"
 author: "Anna van Donkersgoed"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+output:
+  bookdown::gitbook:
+    css: style.css
 documentclass: book
 ---
 
