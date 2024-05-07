@@ -7,4 +7,4 @@ output: bookdown::gitbook
 documentclass: book
 ---
 
-Dit is het portfolio van Anna van Donkersgoed 
+Dit is het portfolio van Anna van Donkersgoed voor het vak Data Science for biology 2. 
