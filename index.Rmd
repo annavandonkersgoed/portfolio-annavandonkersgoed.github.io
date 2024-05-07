@@ -7,6 +7,9 @@ output:
   bookdown::gitbook:
     css: style.css
 documentclass: book
+description: "Dit is het portfolio van Anna van Donkersgoed voor het vak Data Science for biology 2"
 ---
 
-Dit is het portfolio van Anna van Donkersgoed voor het vak Data Science for biology 2. 
+# Introduction 
+
+Iets van introductie voor dit portfolio 

@@ -1,3 +1,2 @@
-# Opdracht 2
-
+# Guerilla analytics
 Hier komt the Guerrilla analytics framework te staan
