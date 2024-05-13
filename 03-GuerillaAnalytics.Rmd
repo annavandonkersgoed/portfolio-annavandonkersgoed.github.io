@@ -1,5 +1,8 @@
 # Guerilla analytics
 
+Deze assignment draaide om Guerilla analytics. 
+
+Afbeelding 1, Indeling van Folders en bestanden
 ```{r, dpi = 50, echo=FALSE}
 knitr::include_graphics(
   here::here(
