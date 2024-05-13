@@ -1,6 +1,6 @@
 # Guerilla analytics
 
-```{r, dpi = 40, echo=FALSE}
+```{r, dpi = 50, echo=FALSE}
 knitr::include_graphics(
   here::here(
     "images",
