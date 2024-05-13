@@ -6,6 +6,7 @@ site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
     css: style.css
+    lib_dir: libs
 documentclass: book
 description: "Dit is het portfolio van Anna van Donkersgoed voor het vak Data Science for biology 2"
 ---
