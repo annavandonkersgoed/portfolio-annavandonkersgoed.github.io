@@ -27,7 +27,7 @@ geleerde van mijn opleiding kan gaan toepassen.
 Opleidingen
 
 | Jaar        | Diploma                 | School                | Plaats                |
-|-----------------|--------------------|------------------|------------------|
+|-------------|-------------------------|-----------------------|-----------------------|
 | 2020-heden  | Life Sciences           | Hogeschool Utrecht    | Utrecht, Nederland    |
 | 2021        | propedeuse Life Scieces | Hogeschool Utrecht    | Utrecht, Nederland    |
 | 2015 - 2020 | HAVO                    | Anna van Rijn college | Nieuwegein, Nederland |
@@ -92,7 +92,7 @@ leeftijdsgroep en heb ik daar de functie secretaris.
 
 **Competenties:**
 
--    Analytisch
+-   Analytisch
 
 -   Creatief
 

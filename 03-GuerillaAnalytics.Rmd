@@ -1,2 +1,13 @@
 # Guerilla analytics
-Hier komt the Guerrilla analytics framework te staan
+
+```{r, dpi = 40, echo=FALSE}
+knitr::include_graphics(
+  here::here(
+    "images",
+    "Foldertree_Daur2.png"
+    
+  )
+)
+```
+
+
