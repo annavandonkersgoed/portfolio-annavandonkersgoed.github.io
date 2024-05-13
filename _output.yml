@@ -4,5 +4,3 @@ bookdown::gitbook:
    toc:
     before: |
         <li><a href="./">Portfolio Anna van Donkersgoed</a></li>
-    after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>

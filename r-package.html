@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7 Reletional databases | Portfolio DataScience for Biology</title>
+  <title>8 R package | Portfolio DataScience for Biology</title>
   <meta name="description" content="Dit is het portfolio van Anna van Donkersgoed voor het vak Data Science for biology 2" />
   <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7 Reletional databases | Portfolio DataScience for Biology" />
+  <meta property="og:title" content="8 R package | Portfolio DataScience for Biology" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Dit is het portfolio van Anna van Donkersgoed voor het vak Data Science for biology 2" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7 Reletional databases | Portfolio DataScience for Biology" />
+  <meta name="twitter:title" content="8 R package | Portfolio DataScience for Biology" />
   
   <meta name="twitter:description" content="Dit is het portfolio van Anna van Donkersgoed voor het vak Data Science for biology 2" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="open-peer-review.html"/>
-<link rel="next" href="r-package.html"/>
+<link rel="prev" href="reletional-databases.html"/>
+<link rel="next" href="r-markdown.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -98,67 +98,9 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reletional-databases" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">7</span> Reletional databases<a href="reletional-databases.html#reletional-databases" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Hier komt mijn relational databases te staan</p>
-<p>#Laad the fku data in drie verschillende dataframes in R</p>
-<p>#gapminder, Health and income outcomes for 184 countries from 1960 to 2016</p>
-<p>install.packages(“dslabs”)
-library(dslabs)
-head(gapminder)</p>
-<p>#download dengue_data.csv
-library(tidyverse)
-dengue_data &lt;- read_csv(here::here(“data”, “dengue_data.csv”), skip = 11)
-head(dengue_data)</p>
-<p>#dowload flu_data.csv
-library(tidyverse)
-flu_data &lt;- read_csv(here::here(“data”, “flu_data.csv”), skip = 11)
-head(flu_data)</p>
-<p>#Check of de data tidy is, zo niet verander het naar tidy data
-##De data is niet tidy. Er zijn veel na values aanwezig. Niet elke variabelen heeft een eigen kolom en niet elke observatie heeft een eigen rij. Je wilt het liefst onderscheiden per jaar, maand, dag, land etc</p>
-<p>#dengue dataset veranderen naar tidy data
-#Check welke landen er zijn
-colnames(dengue_data)
-dengue_tidy &lt;- pivot_longer(data = dengue_data, cols = c(‘Argentina’:‘Venezuela’),<br />
-names_to = “country”, values_to = “cases”)</p>
-<p>dengue_tidydata &lt;- separate(dengue_tidy, Date, into = c(“year”, “month”, “day”))</p>
-<p>#flu dataset veranderen naar tidy data
-#Check welke landen er zijn
-colnames(flu_data)
-flu_tidy &lt;- pivot_longer(data = flu_data, cols = c(‘Argentina’:‘Uruguay’),<br />
-names_to = “country”, values_to = “cases”)</p>
-<p>flu_tidydata &lt;- separate(flu_tidy, Date, into = c(“year”, “month”, “day”))</p>
-<p>#Verander de country en date variabelen van de drie data tabellen zodat ze met elkaar overeenkomen op data type, klasse en waarden.</p>
-<p>gapminder_tbl &lt;- tibble(gapminder)</p>
-<p>#data type komen niet met elkaar overeen
-##Year:int, country:factor</p>
-<p>#country as factor
-flu_tidydata<span class="math inline">\(country &lt;- factor(flu_tidydata\)</span>country)
-dengue_tidydata<span class="math inline">\(country &lt;- factor(dengue_tidydata\)</span>country)</p>
-<p>#year as int
-flu_tidydata<span class="math inline">\(year &lt;- as.integer(flu_tidydata\)</span>year)
-dengue_tidydata<span class="math inline">\(year &lt;- as.integer(dengue_tidydata\)</span>year)</p>
-<p>#dubbel checken:
-flu_tidydata
-dengue_tidydata
-gapminder_tbl</p>
-<p>#Bewaar de 3 tabellen als .csv en .rds bestanden
-#Bewaren als .csv file</p>
-<p>write.csv(flu_tidydata, here::here(“data”, “flu_tidydata.csv”), row.names = FALSE)
-write.csv(dengue_tidydata, here::here(“data”, “dengue_tidydata.csv”), row.names = FALSE)
-write.csv(gapminder_tbl, here::here(“data”, “gapminder_tidydata.csv”), row.names = FALSE)</p>
-<p>#Bewaren als .rds file
-saveRDS(flu_tidydata, file = here::here(“data”, “flu_tidydata.rds”))
-saveRDS(dengue_tidydata, file = here::here(“data”, “dengue_tidydata.rds”))
-saveRDS(gapminder_tbl, file = here::here(“data”, “gapminder_tidydata.rds”))</p>
-<p>#Maak in Dbeaver een nieuwe PostgreSQL database genaamd workflowsdb</p>
-<p>#voeg de tabellen in de database</p>
-<p>#inspecteer de inhoud van de databse met sql en bewaar het sql script</p>
-<p>#inspecteer de inhoud van de tabellen met dplyr in R</p>
-<p>#laad de gapminder data in R en verander de dataframe zodat dit samengevoegd kan worden met dengue en flu</p>
-<p>#Voer joins uit met sql</p>
-<p>#maak een samengevoegde tabel en export dit van de database naar R</p>
-<p>#Voer statistiek uit op de tabel</p>
+<div id="r-package" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">8</span> R package<a href="r-package.html#r-package" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Hier komt mijn R package te staan</p>
 
 </div>
             </section>
@@ -166,8 +108,8 @@ saveRDS(gapminder_tbl, file = here::here(“data”, “gapminder_tidydata.rds�
           </div>
         </div>
       </div>
-<a href="open-peer-review.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-package.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="reletional-databases.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
