@@ -1,3 +1,39 @@
 # Open peer review
 
+In dit gedeelde van het portfolio word er een artikel beoordeeld op reproducibility. Het artikel wordt beoordeeld doormiddel van de Repita criteria.
+
 Het onderzoek dat beoordeeld word is: [Link naar artikel](https://www.biorxiv.org/content/10.1101/2023.09.13.557574v2.full)
+
+Het artikel dat beoordeeld word heet: Testing the effectiveness of a commercially sold probiotic on restoring the gut microbiota of honey bees: a field study
+
+Beoordeling:
+
+| Transparency cirteria       | Response Type                                                       |
+|------------------------|------------------------------------------------|
+| Study Purpose               | Yes                                                                 |
+| Data Availability Statement | Yes                                                                 |
+| Data Location               | Online                                                              |
+| Study Location              | Yes, Dallas, North Carolina & Greensboro, NC                        |
+| Author Review               | Tier 3, Author used institutional email address as primary contact. |
+| Ethics Statement            | No                                                                  |
+| Funding Statement           | Yes                                                                 |
+| Code Availability           | No                                                                  |
+
+Doel: Het doel van het experiment is om te kijken of probiotica een significant effect heeft op maagdarm gezondheid van de bij na het gebruik van antibiotica.
+
+Methode: 9 bijenkorven zijn gebruikt in dit experiment die zijn opgedeeld in 3 groepen. Groep 1 is de controle groep. Groep 2 heeft alleen Terra-Pro gekregen en groep drie heeft Teera-Pro en DFM gekregen. Na een week werden 15 bijen van elke korf weggehaald om te onderzoeken. Hierbij werden de magen van de bijen geextraheerd en werd DNA gextraheerd. De samples zijn bewaard in 100% ethanol bij 4 graden Ceslius tot ze verder vervoerd werden. Bij de samples werd er en qPCR uitgevoerd. Om de data verder te analyseren is de taxonomie van de sequences bepaald doormiddel van qiime feature-classifier classify-sklearn. De diversiteit is getest door gebruik van een Kurskal-Wallis test. De resultaten zijn geplot in aphPad Prism v9.5.1.
+
+Resultaten
+
+Reproducibility code
+
+Code: [COVID-19 Vaccine paper](https://osf.io/kzq69/)
+
+Veranderingen:
+
+here::here function gebruikt om bestand in te lezen
+
+Warning in gsub("^\\s+|\\s+$", "", y) :
+unable to translate '19 a<c2>\u0096os' to a wide string
+Error in gsub("^\\s+|\\s+$", "", y) : input string 257 is invalid
+
