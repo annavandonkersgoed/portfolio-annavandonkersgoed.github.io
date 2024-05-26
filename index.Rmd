@@ -1,7 +1,7 @@
 ---
 title: "Portfolio DataScience for Biology"
 author: "Anna van Donkersgoed"
-date: "`26-05-2024`"
+date: "26-05-2024"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
@@ -16,3 +16,7 @@ params:
   start_month: 1
   end_month: 6
 ---
+
+# Portfolio Data science for biology 2
+
+Info over portfolio 
