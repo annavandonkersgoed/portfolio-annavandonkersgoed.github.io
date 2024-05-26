@@ -1,0 +1,628 @@
+---
+title: "01_covid-vaccine-survey_2020-07-07"
+author: "Adam Palayew ID-260762622"
+date: '2020-07-10'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+```{r bringing in data, include=FALSE}
+require(tidyverse) 
+require(MASS)
+
+data <- read.csv(here::here("data-raw", "Data020", "Data_share_covid-19-vaccination_2020-10-04.csv"), fileEncoding = "latin1") #fix all
+View(data)
+
+data <- data %>%
+  mutate(Age = gsub("[^0-9]", "", Age), Income = gsub("[^0-9]", "", Income))
+#Error on row 8 and 257, fixed those 
+data
+
+
+data$Gender_r <- factor(ifelse(
+  data$Gender == 1, "Male",
+  ifelse(data$Gender == 2, "Female", "Other")
+),ordered = FALSE)
+
+data$within_fct <- factor(data$within_country,levels = c(
+  1,2,3,4,5,6), labels = c(
+    "<20%",
+    "20-40%",
+    "40-60%",
+    "60-80%",
+    ">80%",
+    "Refused"
+  ))
+
+data$ww_fct <- factor(data$world_wide, levels = c(
+  1,2,3,4,6), c(
+    "<$2 per day",
+    "$2-$8 per day",
+    "$8-$32 per day",
+    "$32+",
+    "Refused"
+  ))
+
+data$educ_fact <- factor(data$Universal_edu,
+                         levels = c(
+                           1,2,3,4
+                         ), labels = c(
+                           "Less than high school",
+                           "High school some college",
+                           "Bachelor",
+                           "Post Graduate"
+                         ))
+
+
+data$country_name <- as.factor(ifelse( #this is by far one of the most egregios pieces of code I have written please forgive me I was tired and hit a wall and now I am too lazy to change it to something more elegant 
+  data$Country == 1,"Brazil",
+  ifelse(data$Country == 2, "Canada",ifelse(
+    data$Country == 3, "China",ifelse(
+      data$Country == 4, "Ecuador",ifelse(
+        data$Country == 5, "France",ifelse(
+          data$Country == 6, "Germany",ifelse(
+            data$Country == 7, "India",ifelse(
+              data$Country == 8, "Italy",ifelse(
+                data$Country == 9, "Mexico",ifelse(
+                  data$Country == 10, "Nigeria",ifelse(
+                    data$Country == 11, "Poland",ifelse(
+                      data$Country == 12, "Russia",ifelse(
+                        data$Country == 13, "South Africa",
+                        ifelse(
+                          data$Country == 14, "South Korea",ifelse(
+                            data$Country == 15, "Singapore",
+                            ifelse(
+                              data$Country == 16, "Spain",
+                              ifelse(
+                                data$Country == 17, "Sweden",ifelse(
+                                  data$Country == 18, "United Kingdom",ifelse(
+                                    data$Country == 19, "United States","l"
+))))))))))))))))))))
+
+
+data$agegroup_fct <- factor(x = data$Age_grou, levels = c(1,
+                                                          2,
+                                                          3,
+                                                          4),
+                            labels = c("18-24",
+                                       "25-54",
+                                       "55-64",
+                                       "65+"), ordered = FALSE)
+
+#mortlity factor
+data$mortality_fct <- cut(as.numeric(data$mortalityperm),
+                          c(-Inf,200,400,Inf),labels = c(
+                            "low",
+                            "medium",
+                            "high"
+                          ))
+
+
+#ERROR
+data <- data[!is.na(data$casesperm), ]
+data$casesperm <- as.numeric(data$casesperm)
+
+#case factor
+data$case_fct <- cut(as.numeric(data$casesperm),
+                     c(-Inf,2000,4000,Inf),labels = c(
+                       "low",
+                       "medium",
+                       "high"
+                     ))
+
+
+###just the index vars
+data_test <- data[,4:13]
+
+###make group data
+
+# need to make pop covid and need to make pop COVID
+
+
+```
+
+
+
+#Question:I would follow my employer’s recommendation to get a COVID-19 vaccine once the government has approved it as safe and effective.
+
+```{r buisness 2}
+
+data$Busines2_fct <- factor(data$Business2,
+                            levels = c(
+                              1,
+                              2,
+                              3,
+                              4,
+                              5
+                            ),
+                            labels = c(
+                              "Completely disagree",
+                              "Somewhat disagree",
+                              "Neutral/no opinion",
+                              "Somewhat agree",
+                              "Completely agree"
+                            ))
+
+
+summary(data$Busines2_fct)
+
+#busi by gender
+gender <- ggplot(
+  data = data
+)+
+  geom_bar(aes(
+    x = Gender_r,
+    fill = Busines2_fct
+  ), stat = 'count', position = 'fill')+
+  theme(axis.text.x = element_text(angle = 90, size = 10))+
+  coord_flip()+
+  labs(title = "Business by gender")+
+  xlab("Proportion")+
+  ylab("Gender")+
+  scale_fill_brewer("Response", type = "div", palette = 4)
+gender
+#busi by age
+age <- ggplot(
+  data = data
+)+
+  geom_bar(aes(
+    x = agegroup_fct,
+    fill = Busines2_fct
+  ), stat = 'count', position = 'fill')+
+  theme(axis.text.x = element_text(angle = 90, size = 10))+
+  coord_flip()+
+  labs(title = "Business by age")+
+  ylab("Proportion")+
+  xlab("Age")+
+  scale_fill_brewer("Response", type = "div", palette = 4)
+age
+
+##busi by income
+inc <- ggplot(
+  data = data
+)+
+  geom_bar(aes(
+    x = ww_fct,
+    fill = Busines2_fct
+  ), stat = 'count', position = 'fill')+
+  theme(axis.text.x = element_text(angle = 90, size = 10))+
+  coord_flip()+
+  labs(title = "Business by income")+
+  ylab("Proportion")+
+  xlab("Income level")+
+  scale_fill_brewer("Response", type = "div", palette = 4)
+inc
+
+##busi by education
+educ <- ggplot(
+  data = data
+)+
+  geom_bar(aes(
+    x = educ_fact,
+    fill = Busines2_fct
+  ), stat = 'count', position = 'fill')+
+  theme(axis.text.x = element_text(angle = 90, size = 10))+
+  coord_flip()+
+  labs(title = "Business by education")+
+  ylab("Proportion")+
+  xlab("Education level")+
+  scale_fill_brewer("Response", type = "div", palette = 4)
+educ
+
+#simple country plot
+country <- data %>%
+  count(country_name = country_name, Busines2_fct = Busines2_fct)%>%
+  mutate(pct = prop.table(n)) %>%
+  ggplot(aes(x = country_name,
+    y = pct,label = scales::percent(pct, accuracy = 3)))+
+  geom_bar(aes(
+    fill = Busines2_fct
+  ), position = 'fill', stat = "identity")+
+  #geom_text(position = 'fill') + 
+  theme(axis.text.x = element_text(angle = 90, size = 10))+
+  coord_flip()+
+  #labs(title = "Business by country")+
+  ylab("Proportion")+
+  xlab("Country")+
+  scale_fill_brewer("Response", type = "div", palette = 4)
+country 
+
+#Error bad pathway 
+
+path_to_save <- here::here("data")
+ggsave(filename = "figure-bus-vax.pdf", plot = country, path = path_to_save, width = 10, height = 7)
+
+ #busi by coutry x gender
+gender <- ggplot(
+  data = data
+)+
+  geom_bar(aes(
+    x = country_name,
+    fill = Busines2_fct
+  ), stat = 'count', position = 'fill')+
+  facet_wrap(~Gender_r)+
+  theme(axis.text.x = element_text(angle = 90, size = 10))+
+  coord_flip()+
+  labs(title = "Business by country by gender")+
+  ylab("Proportion")+
+  xlab("Country")+
+  scale_fill_brewer("Response", type = "div", palette = 4)
+gender
+
+#country by age
+age <- ggplot(
+  data = data
+)+
+  geom_bar(aes(
+    x = country_name,
+    fill = Busines2_fct
+  ), stat = 'count', position = 'fill')+
+  facet_wrap(~agegroup_fct)+
+  theme(axis.text.x = element_text(angle = 90, size = 10))+
+  coord_flip()+
+  labs(title = "Business by country by age")+
+  ylab("Proportion")+
+  xlab("Country")+
+  scale_fill_brewer("Response", type = "div", palette = 4)
+age
+
+#country by income
+inc <- ggplot(
+  data = data
+)+
+  geom_bar(aes(
+    x = country_name,
+    fill = Busines2_fct
+  ), stat = 'count', position = 'fill')+
+  facet_wrap(~ww_fct)+
+  theme(axis.text.x = element_text(angle = 90, size = 10))+
+  coord_flip()+
+  labs(title = "Business by country by income")+
+  ylab("Proportion")+
+  xlab("Country")+
+  scale_fill_brewer("Response", type = "div", palette = 4)
+inc
+
+#country by education
+educ <- ggplot(
+  data = data
+)+
+  geom_bar(aes(
+    x = country_name,
+    fill = Busines2_fct
+  ), stat = 'count', position = 'fill')+
+  facet_wrap(~educ_fact)+
+  theme(axis.text.x = element_text(angle = 90, size = 10))+
+  coord_flip()+
+  labs(title = "Business by country by education")+
+  ylab("Proportion")+
+  xlab("Country")+
+  scale_fill_brewer("Response", type = "div", palette = 4)
+educ
+
+```
+
+
+#Question:If a COVID-19 vaccine is proven safe and effective and is available to me, I will take it.
+
+
+```{r vaccine}
+
+
+data$Vaccine_fct <- factor(data$Vaccine,
+                            levels = c(
+                              1,
+                              2,
+                              3,
+                              4,
+                              5
+                            ),
+                            labels = c(
+                              "Completely disagree",
+                              "Somewhat disagree",
+                              "Neutral/no opinion",
+                              "Somewhat agree",
+                              "Completely agree"
+                            ))
+
+
+summary(data$Vaccine_fct)
+
+
+#Vaccine_fct by gender
+gender <- ggplot(
+  data = data
+)+
+  geom_bar(aes(
+    x = Gender_r,
+    fill = Vaccine_fct
+  ), stat = 'count', position = 'fill')+
+  theme(axis.text.x = element_text(angle = 90, size = 10))+
+  coord_flip()+
+  labs(title = "Vaccine by gender")+
+  ylab("Proportion")+
+  xlab("Gender")+
+  scale_fill_brewer("Response", type = "div", palette = 4)
+gender
+
+#Vaccine_fct by age
+age <- ggplot(
+  data = data
+)+
+  geom_bar(aes(
+    x = agegroup_fct,
+    fill = Vaccine_fct
+  ), stat = 'count', position = 'fill')+
+  theme(axis.text.x = element_text(angle = 90, size = 10))+
+  coord_flip()+
+  labs(title = "Vaccine by age group")+
+  ylab("Proportion")+
+  xlab("Age")+
+  scale_fill_brewer("Response", type = "div", palette = 4)
+age
+
+##Vaccine_fct by income
+inc <- ggplot(
+  data = data
+)+
+  geom_bar(aes(
+    x = ww_fct,
+    fill = Vaccine_fct
+  ), stat = 'count', position = 'fill')+
+  theme(axis.text.x = element_text(angle = 90, size = 10))+
+  coord_flip()+
+  labs(title = "Vaccine by income")+
+  ylab("Proportion")+
+  xlab("Income")+
+  scale_fill_brewer("Response", type = "div", palette = 4)
+inc
+
+##Vaccine_fct by education
+educ <- ggplot(
+  data = data
+)+
+  geom_bar(aes(
+    x = educ_fact,
+    fill = Vaccine_fct
+  ), stat = 'count', position = 'fill')+
+  theme(axis.text.x = element_text(angle = 90, size = 10))+
+  coord_flip()+
+  labs(title = "Vaccine by education")+
+  ylab("Proportion")+
+  xlab("Education")+
+  scale_fill_brewer("Response", type = "div", palette = 4)
+educ
+
+##vaccine by country 
+country <- data %>%
+  count(country_name = country_name, Vaccine_fct = Vaccine_fct)%>%
+  mutate(pct = prop.table(n)) %>%
+  ggplot(aes(x = country_name,
+    y = pct,label = scales::percent(pct, accuracy = 3)))+
+  geom_bar(aes(
+    fill = Vaccine_fct
+  ), position = 'fill', stat = "identity")+
+  #geom_text(position = 'fill') + 
+  theme(axis.text.x = element_text(angle = 90, size = 10))+
+  coord_flip()+
+  #labs(title = "Business by country")+
+  ylab("Proportion")+
+  xlab("Country")+
+  scale_fill_brewer("Response", type = "div", palette = 4)
+country
+#ggsave(filename = "figure-vax-vax.pdf", plot = country, path = "covid-score/vaccine paper/", width = 10, height = 7)
+
+
+gender <- ggplot(
+  data = data
+)+
+  geom_bar(aes(
+    x = country_name,
+    fill = Vaccine_fct
+  ), stat = 'count', position = 'fill')+
+  facet_wrap(~Gender_r)+
+  theme(axis.text.x = element_text(angle = 90, size = 10))+
+  coord_flip()+
+  labs(title = "Vaccine by country by gender")+
+  ylab("Proportion")+
+  xlab("Country")+
+  scale_fill_brewer("Response", type = "div", palette = 4)
+gender
+
+age <- ggplot(
+  data = data
+)+
+  geom_bar(aes(
+    x = country_name,
+    fill = Vaccine_fct
+  ), stat = 'count', position = 'fill')+
+  facet_wrap(~agegroup_fct)+
+  theme(axis.text.x = element_text(angle = 90, size = 10))+
+  coord_flip()+
+  labs(title = "Vaccine by country by age")+
+  ylab("Proportion")+
+  xlab("Country")+
+  scale_fill_brewer("Response", type = "div", palette = 4)
+age
+
+inc <- ggplot(
+  data = data
+)+
+  geom_bar(aes(
+    x = country_name,
+    fill = Vaccine_fct
+  ), stat = 'count', position = 'fill')+
+  facet_wrap(~ww_fct)+
+  theme(axis.text.x = element_text(angle = 90, size = 10))+
+  coord_flip()+
+  labs(title = "Vaccine by country by income")+
+  ylab("Proportion")+
+  xlab("Country")+
+  scale_fill_brewer("Response", type = "div", palette = 4)
+inc
+
+educ <- ggplot(
+  data = data
+)+
+  geom_bar(aes(
+    x = country_name,
+    fill = Vaccine_fct
+  ), stat = 'count', position = 'fill')+
+  facet_wrap(~educ_fact)+
+  theme(axis.text.x = element_text(angle = 90, size = 10))+
+  coord_flip()+
+  labs(title = "Vaccine by country by education")+
+  ylab("Proportion")+
+  xlab("Country")+
+  scale_fill_brewer("Response", type = "div", palette = 4)
+educ
+
+```
+
+
+#regression
+```{r regression biz}
+data$biz_reg <- ifelse(data$Business2 > 3, 1, 0)
+
+fit2 <- glm(data = data, formula = biz_reg ~ educ_fact, family=binomial(link="logit"))
+summary(fit2)
+exp(cbind(coef(fit2), confint(fit2)))
+
+fit3 <- glm(data = data, formula = biz_reg ~ ww_fct, family=binomial(link="logit"))
+summary(fit3)
+exp(cbind(coef(fit3), confint(fit3)))
+
+fit4 <- glm(data = data, formula = biz_reg ~ Gender_r, family=binomial(link="logit"))
+summary(fit4)
+exp(cbind(coef(fit4), confint(fit4)))
+
+fit5 <- glm(data = data, formula = biz_reg ~ agegroup_fct, family=binomial(link="logit"))
+summary(fit5)
+exp(cbind(coef(fit5), confint(fit5)))
+
+data$sick_reg <- ifelse(data$sickwithCOVID == 1, 1, 0)
+fit6 <- glm(data = data, formula = biz_reg ~ sick_reg, family=binomial(link="logit"))
+summary(fit6)
+exp(cbind(coef(fit6), confint(fit6)))
+
+fit7 <- glm(data = data, formula = biz_reg ~ covidcases, family=binomial(link="logit"))
+summary(fit7)
+exp(cbind(coef(fit7), confint(fit7)))
+
+fit8 <- glm(data = data, formula = biz_reg ~ mortalityperm, family=binomial(link="logit"))
+summary(fit8)
+exp(cbind(coef(fit8), confint(fit8)))
+
+fit9 <- glm(data = data, formula = biz_reg ~ trusthealth, family=binomial(link="logit"))
+summary(fit9)
+exp(cbind(coef(fit9), confint(fit9)))
+
+```
+
+#regression
+```{r regression vax}
+data$vacc2_reg <- ifelse(data$Vaccine > 3, 1, 0)
+
+fit2 <- glm(data = data, formula = vacc2_reg ~ educ_fact, family=binomial(link="logit"))
+summary(fit2)
+exp(cbind(coef(fit2), confint(fit2)))
+
+fit3 <- glm(data = data, formula = vacc2_reg ~ ww_fct, family=binomial(link="logit"))
+summary(fit3)
+exp(cbind(coef(fit3), confint(fit3)))
+
+fit4 <- glm(data = data, formula = vacc2_reg ~ Gender_r, family=binomial(link="logit"))
+summary(fit4)
+exp(cbind(coef(fit4), confint(fit4)))
+
+fit5 <- glm(data = data, formula = vacc2_reg ~ agegroup_fct, family=binomial(link="logit"))
+summary(fit5)
+exp(cbind(coef(fit5), confint(fit5)))
+
+fit6 <- glm(data = data, formula = vacc2_reg ~ sick_reg, family=binomial(link="logit"))
+summary(fit6)
+exp(cbind(coef(fit6), confint(fit6)))
+
+fit7 <- glm(data = data, formula = vacc2_reg ~ covidcases, family=binomial(link="logit"))
+summary(fit7)
+exp(cbind(coef(fit7), confint(fit7)))
+
+
+fit8 <- glm(data = data, formula = vacc2_reg ~ mortalityperm, family=binomial(link="logit"))
+summary(fit8)
+exp(cbind(coef(fit8), confint(fit8)))
+
+fit9 <- glm(data = data, formula = vacc2_reg ~ trusthealth, family=binomial(link="logit"))
+summary(fit9)
+exp(cbind(coef(fit9), confint(fit9)))
+
+```
+
+#Table
+
+```{r}
+
+
+tab_1 <- tableone::CreateCatTable( data = data, vars = c(
+  "Gender_r",
+  "ww_fct",
+  "educ_fact",
+  "agegroup_fct",
+  "Business2",
+  "Vaccine"
+))
+tab_1 <- print(tab_1)
+
+#write.csv(tab_1, file = "table_1_vaccine-paper_basics.csv")
+
+tab_2 <- tableone::CreateCatTable( data = data, strata = "country_name",vars = c(
+  "Gender_r",
+  "ww_fct",
+  "educ_fact",
+  "agegroup_fct",
+  "Business2",
+  "Vaccine"
+))
+tab_2 <- print(tab_2)
+
+#write.csv(tab_2, file = "table_2_vaccine-paper_strat-country.csv")
+
+
+
+```
+
+#Supplemental figure
+
+```{r supplemental figure}
+
+data_test <- data %>%
+  group_by(country_name) %>%
+  summarise(percent_vax = round(((sum(vacc2_reg))/(length(vacc2_reg)))*100,2)) %>%
+  arrange(-percent_vax)
+  
+plot <- ggplot(data = data_test)+
+  geom_bar(aes(
+    x = reorder(country_name, -percent_vax),
+    y = percent_vax
+  ), stat = 'identity')+
+  geom_text(aes(label= percent_vax,
+                x = reorder(country_name, -percent_vax),
+                y = percent_vax
+                ), vjust=-1, inherit.aes = TRUE)+
+  theme_bw()+
+  theme(
+    axis.text.x = element_text(angle = 90, size = 14),
+    axis.text.y = element_text(size = 14),
+    text = element_text(size = 14)
+  )+
+  ylim(0,100)+
+  ylab("Percentage responded positive")+
+  xlab("Country")
+plot
+
+```

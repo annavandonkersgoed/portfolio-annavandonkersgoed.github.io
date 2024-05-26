@@ -1,0 +1,19 @@
+---
+bibliography: references.bib
+---
+
+# Introductie project AMR
+
+**Introductie voor het project antimicrobiële resistentie**
+
+Tegenwoordig worden er veel antimicrobiële middelen gebruikt om infectie ziekten te behandelen en te voorkomen. Antibiotica, antivirale middelen en antiparasitaire middelen zijn voorbeelden van antimicrobiële middelen. Echter komt het steeds vaker voor dat bacteriën resistent worden tegen antimicrobiële middelen. Dit kan gebeuren doordat er al resistente bacteriën aanwezig zijn en zich vermenigvuldigen of door het te vaak gebruiken van een antibiotica. Doordat de bacteriën vaak in aanraking komen met het antibiotica gaat het zichzelf beschermen waardoor een resistentie wordt opgebouwd tegen het geneesmiddel. Het resistent worden tegen antimicrobiële middelen heet microbiële resistentie. [@AMR] [@RIVM]
+
+Antimicrobiële resistentie is een wereldwijd probleem. Om het probleem op te lossen is er een one health approach. Deze aanpak zorgt ervoor dat mensen uit verschillende sectoren samen werken en communiceren om antimicrobiële resistentie te verminderen. Voorbeelden van de sectoren zijn voedselproductie, dier- en mileusector en de gezondheidssector. De verschillende sectoren werken samen aangezien het verspreiden van antimicorbiële resistentie invloed heeft op elke sector. Ziektes worden bijvoorbeeld overgedragen van dieren naar mensen. [@onehealth]
+
+In dit project specifiek wordt er gekeken naar het uitwisselen van het resistoom tussen bacteriën. In het resistoom zitten de genen die voor de resistentie tegen de antimicrobiële middelen zorgen. Door de uitwisseling worden dus meer bacteriën resistent. Er wordt bij dit project specifiek gekeken naar de uitwisseling van het resistoom tussen bacteriën in Nederland. Er wordt verder gewerkt op een bestaande workflow waar de data uit de SRA-databank is verkregen, opgeschoond en waarbij de reconstructie van het plasmide DNA van bacteriele genomen werd bepaald. [@project]
+
+Het doel voor ons bij dit project is om van de workflow 1 pipeline te maken, ervoor zorgen dat nieuwe data makkelijk kan worden toegevoegd, een metadata bestand maken en de data visualiseren. Ook moeten er nog wat applicaties toegevoegd worden om verschillende onderdelen van de data te kunnen visualiseren waar de opdrachtgever geïnteresseerd in is. Een paar van deze onderdelen zijn het plasmide type, mobaliserbaarheid, resistentie genen en het clusteren van genen. De data moet gevisualiseerd worden in een R shiny app.
+
+Daarnaast is het doel van het project niet alleen het eindresultaat van de opdracht van de opdrachtgever, maar ook het leren om samen te werken bij een datascience project volgens de Guerrilla Analytics principes. Het is namelijk belangrijk om te leren werken met een version control software, in dit geval Git en Github om reproduceerbaar te werken. Ook is het erg belangrijk om een gestructureerde Github repository te hebben, zodat de opdrachtgever de pipeline makkelijk kan downloaden en kan gebruiken. Een voorbeeld van een gestructueerde repository is het hebben van een duidelijk project bord. Om een project soepel te laten voorlopen is het erg belangrijk om taken te hebben die duidelijk verwoord zijn en niet veel tijd kosten om uit gevoerd te worden. Dit zorgt voor een snelle samenwerking en voor een sneller eindproduct. [@agile]
+
+Niet alleen zorgt het project antimicrobiële resistentie ervoor dat er goed samen wordt gewerkt door een workflow op te stellen en reproduceerbaar te werken, ook laat het project zien hoe het op het werkveld eruit kan zien aangezien het project verkregen is door een externe opdrachtgever.

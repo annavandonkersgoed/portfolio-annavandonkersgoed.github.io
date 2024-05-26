@@ -1,91 +1,59 @@
 # Reletional databases
 
-Hier komt mijn relational databases te staan 
+Relational databases worden vaak gebruikt bij het combineren van verschillende datasets. Dit is erg handig voor experiment waar verschillende datasets worden gebruikt maar er wel overlappende waarden aanwezig zijn. SQL is een programmeertaal wat vaak gebruikt word voor het verwerken van informatie in een relational database. In deze opdracht wordt er laten zien dat er met sql gewerkt kan worden. Er zijn verschillende screenshots gemaakt van code van het programma [DBeaver](https://dbeaver.io/). In dit programma is er gewerkt met PostgreSQL.
 
-#Laad the fku data in drie verschillende dataframes in R 
+In dit voorbeeld wordt er een database gecreëerd voor een hypothetisch experiment waarbij er data is met informatie over planten en data over de kenmerken van de planten.
 
-#gapminder, Health and income outcomes for 184 countries from 1960 to 2016
+```{r , out.width = "500px", fig.cap="Maken van een database en 2 tabellen", echo = FALSE}
+knitr::include_graphics(
+  here::here(
+    "images",
+    "Sql_1.png"
+  )
+)
+```
 
-install.packages("dslabs")
-library(dslabs)
-head(gapminder)
+Eerst wordt er een database gemaakt met de 2 tabellen erin waarin plant_id de verbindende key is tussen de 2 tabellen.
 
-#download dengue_data.csv
-library(tidyverse)
-dengue_data <- read_csv(here::here("data", "dengue_data.csv"), skip = 11)
-head(dengue_data)
+Daarna wordt de data toegevoed aan de tabellen (dit is random gegeneerde data dus niet reëel)
+```{r , out.width = "900px", fig.cap="Data toevoegen aan tabellen", echo = FALSE}
+knitr::include_graphics(
+  here::here(
+    "images",
+    "Sql_2.png"
+  )
+)
+```
 
-#dowload flu_data.csv
-library(tidyverse)
-flu_data <- read_csv(here::here("data", "flu_data.csv"), skip = 11)
-head(flu_data)
+Nadat de tabellen met data zijn gemaakt kan er met de data gewerkt worden. Kolommen kunnen bijvoorbeeld gefilterd worden en bepaalde kolommen kunnen geselecteerd worden. In de onderstaande afbeeldingen is dat laten zien.  
 
-#Check of de data tidy is, zo niet verander het naar tidy data
-##De data is niet tidy. Er zijn veel na values aanwezig. Niet elke variabelen heeft een eigen kolom en niet elke observatie heeft een eigen rij. Je wilt het liefst onderscheiden per jaar, maand, dag, land etc  
+Selecteren van de data waarbij de kolom bloemkleur wordt gefilterd uit de tabel kenmerken: 
+```{r , out.width = "600px", fig.cap="Select command", echo = FALSE}
+knitr::include_graphics(
+  here::here(
+    "images",
+    "Sql_3.png"
+  )
+)
+```
 
-#dengue dataset veranderen naar tidy data
-#Check welke landen er zijn 
-colnames(dengue_data)
-dengue_tidy <- pivot_longer(data = dengue_data, cols = c('Argentina':'Venezuela'),  
-                             names_to = "country",  values_to = "cases")
+Filteren van de data waarbij de kolom bladkleur wordt gefilterd op de bladeren die groen zijn uit de tabel kenmerken: 
+```{r , out.width = "600px", fig.cap="Where command", echo = FALSE}
+knitr::include_graphics(
+  here::here(
+    "images",
+    "Sql_4.png"
+  )
+)
+```
 
-dengue_tidydata <- separate(dengue_tidy, Date, into = c("year", "month", "day")) 
+Ook kun je de 2 tabellen plant en kenmerken aan elkaar linken. Dit gebeurd door het inner_join command.
+```{r , out.width = "1500px", fig.cap="Samenvoegen van 2 tabellen", echo = FALSE}
+knitr::include_graphics(
+  here::here(
+    "images",
+    "Sql_5.png"
+  )
+)
+```
 
-#flu dataset veranderen naar tidy data 
-#Check welke landen er zijn 
-colnames(flu_data)
-flu_tidy <- pivot_longer(data = flu_data, cols = c('Argentina':'Uruguay'),  
-                             names_to = "country",  values_to = "cases")
-
-flu_tidydata <- separate(flu_tidy, Date, into = c("year", "month", "day"))
-
-
-#Verander de country en date variabelen van de drie data tabellen zodat ze met elkaar overeenkomen op data type, klasse en waarden. 
-
-gapminder_tbl <- tibble(gapminder)
-
-#data type komen niet met elkaar overeen 
-##Year:int, country:factor
-
-#country as factor 
-flu_tidydata$country <- factor(flu_tidydata$country) 
-dengue_tidydata$country <- factor(dengue_tidydata$country) 
-
-#year as int 
-flu_tidydata$year <- as.integer(flu_tidydata$year) 
-dengue_tidydata$year <- as.integer(dengue_tidydata$year) 
-
-#dubbel checken:
-flu_tidydata
-dengue_tidydata
-gapminder_tbl
-
-#Bewaar de 3 tabellen als .csv en .rds bestanden 
-#Bewaren als .csv file 
-
-write.csv(flu_tidydata, here::here("data", "flu_tidydata.csv"), row.names = FALSE)
-write.csv(dengue_tidydata, here::here("data", "dengue_tidydata.csv"), row.names = FALSE)
-write.csv(gapminder_tbl, here::here("data", "gapminder_tidydata.csv"), row.names = FALSE)
-
-#Bewaren als .rds file
-saveRDS(flu_tidydata, file = here::here("data", "flu_tidydata.rds"))
-saveRDS(dengue_tidydata, file = here::here("data", "dengue_tidydata.rds"))
-saveRDS(gapminder_tbl, file = here::here("data", "gapminder_tidydata.rds"))
-
-#Maak in Dbeaver een nieuwe PostgreSQL database genaamd workflowsdb
-
-
-
-#voeg de tabellen in de database 
-
-#inspecteer de inhoud van de databse met sql en bewaar het sql script 
-
-#inspecteer de inhoud van de tabellen met dplyr in R 
-
-#laad de gapminder data in R en verander de dataframe zodat dit samengevoegd kan worden met dengue en flu
-
-#Voer joins uit met sql 
-
-#maak een samengevoegde tabel en export dit van de database naar R
-
-#Voer statistiek uit op de tabel 

@@ -1,0 +1,86 @@
+{
+  "alternateIdentifiers": [
+    {
+      "alternateIdentifier": "https://osf.io/xtjma",
+      "alternateIdentifierType": "URL"
+    }
+  ],
+  "contributors": [
+    {
+      "contributorName": {
+        "contributorName": "Center for Open Science",
+        "nameType": "Organizational"
+      },
+      "contributorType": "HostingInstitution",
+      "nameIdentifier": {
+        "nameIdentifier": "https://ror.org/05d5mza29",
+        "nameIdentifierScheme": "ROR"
+      }
+    }
+  ],
+  "creators": [
+    {
+      "creatorName": {
+        "creatorName": "Adam Palayew",
+        "nameType": "Personal"
+      },
+      "nameIdentifier": {
+        "nameIdentifier": "https://osf.io/g6am9",
+        "nameIdentifierScheme": "URL"
+      }
+    }
+  ],
+  "dates": [
+    {
+      "date": "2020-10-04",
+      "dateType": "Created"
+    },
+    {
+      "date": "2021-05-21",
+      "dateType": "Updated"
+    }
+  ],
+  "descriptions": [],
+  "fundingReferences": [],
+  "identifier": {
+    "identifier": "https://osf.io/xtjma",
+    "identifierType": "URL"
+  },
+  "publicationYear": "2020",
+  "publisher": "OSF",
+  "relatedIdentifiers": [
+    {
+      "relatedIdentifier": "https://osf.io/hrzup",
+      "relatedIdentifierType": "URL",
+      "relationType": "IsPartOf"
+    }
+  ],
+  "relatedItems": [
+    {
+      "publicationYear": "2020",
+      "publisher": "OSF",
+      "relatedItemIdentifier": {
+        "relatedItemIdentifier": "https://osf.io/hrzup",
+        "relatedItemIdentifierType": "URL"
+      },
+      "relatedItemType": "Text",
+      "relationType": "IsPartOf",
+      "titles": [
+        {
+          "title": "Code"
+        }
+      ]
+    }
+  ],
+  "resourceType": {
+    "resourceType": "File",
+    "resourceTypeGeneral": "Text"
+  },
+  "rightsList": [],
+  "subjects": [],
+  "titles": [
+    {
+      "title": "covid-vaccine-code_2020-10-04.Rmd"
+    }
+  ]
+}

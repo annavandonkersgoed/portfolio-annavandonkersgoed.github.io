@@ -1,3 +1,0 @@
-# R markdown 
-
-Hier komt de uitwerking van R markdown te staan 

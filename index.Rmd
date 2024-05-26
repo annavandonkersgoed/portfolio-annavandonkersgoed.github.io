@@ -1,16 +1,18 @@
 ---
 title: "Portfolio DataScience for Biology"
 author: "Anna van Donkersgoed"
-date: "`r Sys.Date()`"
+date: "`26-05-2024`"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
     css: style.css
     lib_dir: libs
 documentclass: book
+bibliography: references.bib 
 description: "Dit is het portfolio van Anna van Donkersgoed voor het vak Data Science for biology 2"
+params:
+  countries: "Netherlands"
+  year: 2022
+  start_month: 1
+  end_month: 6
 ---
-
-# Introduction 
-
-Iets van introductie voor dit portfolio 

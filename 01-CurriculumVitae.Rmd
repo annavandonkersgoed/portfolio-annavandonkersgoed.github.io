@@ -13,10 +13,10 @@ library(vitae)
 
 Mijn naam is Anna van Donkersgoed en ik ben momenteel derdejaars student
 aan de opleiding Life Sciences aan de Hogeschool Utrecht. Mijn
-specialisatie is Data Science, daarnaast ben ik ook geïnteresseerd in
-Metagenomics. Ik ben een behulpzaam en leergierig persoon. Ik ben
-momenteel op zoek naar een stage waarin ik mijn vaardigheden en het
-geleerde van mijn opleiding kan gaan toepassen.
+specialisatie is Microbiologie met als minor Data Science. Ik ben een
+behulpzaam en leergierig persoon. Ik ben momenteel op zoek naar een
+stage waarin ik mijn vaardigheden en het geleerde van mijn opleiding kan
+gaan toepassen.
 
 **Contactgegevens**
 

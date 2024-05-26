@@ -23,7 +23,7 @@
 <meta name="author" content="Anna van Donkersgoed" />
 
 
-<meta name="date" content="2024-05-21" />
+<meta name="date" content="2024-05-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -169,7 +169,80 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="covid-19-data" class="section level1 hasAnchor" number="10">
 <h1><span class="header-section-number">10</span> covid 19 data<a href="covid-19-data.html#covid-19-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Hier komt COVID-19 te staan</p>
+<p>In deze opdracht wordt er gewerkt met parameters. De parameters die gebruikt zijn in deze opdracht zijn:</p>
+<ul>
+<li><p>countries: Een land dat in Europa ligt</p></li>
+<li><p>year: Het jaartal 2020, 2021, of 2022</p></li>
+<li><p>Month: Een periode vanaf het begin van een maand tot het eind van een andere maand</p></li>
+</ul>
+<p>De parameters zijn te vinden in de index van de bookdown en kunnen hier ook aangepast worden.</p>
+<p>Op dit moment gebruikte parameters zijn:</p>
+<p>params:</p>
+<ul>
+<li><p>countries: “Netherlands”</p></li>
+<li><p>year: 2022</p></li>
+<li><p>months: [1, 2, 3]</p></li>
+</ul>
+<p>De gebruikte data is COVID-19 data <a href="https://www.ecdc.europa.eu/en/publications-data/data-daily-new-cases-covid-19-eueea-country">Link naar data</a></p>
+<p>Als eerste stap word de data ingelezen.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="covid-19-data.html#cb12-1" tabindex="-1"></a>covid19_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data-raw&quot;</span>, <span class="st">&quot;Data060&quot;</span>, <span class="st">&quot;data.csv&quot;</span>))</span>
+<span id="cb12-2"><a href="covid-19-data.html#cb12-2" tabindex="-1"></a><span class="fu">colnames</span>(covid19_data)[<span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="st">&quot;countries&quot;</span></span>
+<span id="cb12-3"><a href="covid-19-data.html#cb12-3" tabindex="-1"></a>covid19_data_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(covid19_data)</span></code></pre></div>
+<p><strong>Grafieken met parameter countries</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="covid-19-data.html#cb13-1" tabindex="-1"></a><span class="co">#Aantal doden per land per jaar </span></span>
+<span id="cb13-2"><a href="covid-19-data.html#cb13-2" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="covid-19-data.html#cb13-3" tabindex="-1"></a>deaths_per_year <span class="ot">&lt;-</span> covid19_data_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="covid-19-data.html#cb13-4" tabindex="-1"></a>  <span class="fu">filter</span>(countries <span class="sc">==</span> params<span class="sc">$</span>countries) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-5"><a href="covid-19-data.html#cb13-5" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb13-6"><a href="covid-19-data.html#cb13-6" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_deaths =</span> <span class="fu">sum</span>(deaths, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span>
+<span id="cb13-7"><a href="covid-19-data.html#cb13-7" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="covid-19-data.html#cb13-8" tabindex="-1"></a>plot_deaths_per_year <span class="ot">&lt;-</span> deaths_per_year <span class="sc">%&gt;%</span>  </span>
+<span id="cb13-9"><a href="covid-19-data.html#cb13-9" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> total_deaths, <span class="at">fill =</span> year)) <span class="sc">+</span> </span>
+<span id="cb13-10"><a href="covid-19-data.html#cb13-10" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb13-11"><a href="covid-19-data.html#cb13-11" tabindex="-1"></a> <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;Amount of Deaths in&quot;</span>, params<span class="sc">$</span>countries, <span class="st">&quot;per Year&quot;</span>), </span>
+<span id="cb13-12"><a href="covid-19-data.html#cb13-12" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>, </span>
+<span id="cb13-13"><a href="covid-19-data.html#cb13-13" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Amount of Deaths&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb13-14"><a href="covid-19-data.html#cb13-14" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span>
+<span id="cb13-15"><a href="covid-19-data.html#cb13-15" tabindex="-1"></a>plot_deaths_per_year</span></code></pre></div>
+<p><img src="Portfolio_files/figure-html/deaths_per_country-1.png" width="672" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="covid-19-data.html#cb14-1" tabindex="-1"></a><span class="co">#Aantal cases per land per jaar </span></span>
+<span id="cb14-2"><a href="covid-19-data.html#cb14-2" tabindex="-1"></a>cases_per_year <span class="ot">&lt;-</span> cases_per_year <span class="ot">&lt;-</span> covid19_data_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="covid-19-data.html#cb14-3" tabindex="-1"></a>  <span class="fu">filter</span>(countries <span class="sc">==</span> params<span class="sc">$</span>countries) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-4"><a href="covid-19-data.html#cb14-4" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb14-5"><a href="covid-19-data.html#cb14-5" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_cases =</span> <span class="fu">sum</span>(cases, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span>
+<span id="cb14-6"><a href="covid-19-data.html#cb14-6" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="covid-19-data.html#cb14-7" tabindex="-1"></a>plot_cases_per_year <span class="ot">&lt;-</span> cases_per_year <span class="sc">%&gt;%</span>  </span>
+<span id="cb14-8"><a href="covid-19-data.html#cb14-8" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> total_cases, <span class="at">fill =</span> year)) <span class="sc">+</span> </span>
+<span id="cb14-9"><a href="covid-19-data.html#cb14-9" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb14-10"><a href="covid-19-data.html#cb14-10" tabindex="-1"></a> <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;Amount of cases in&quot;</span>, params<span class="sc">$</span>countries, <span class="st">&quot;per Year&quot;</span>), </span>
+<span id="cb14-11"><a href="covid-19-data.html#cb14-11" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>, </span>
+<span id="cb14-12"><a href="covid-19-data.html#cb14-12" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Amount of cases&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb14-13"><a href="covid-19-data.html#cb14-13" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span>
+<span id="cb14-14"><a href="covid-19-data.html#cb14-14" tabindex="-1"></a>plot_cases_per_year </span></code></pre></div>
+<p><img src="Portfolio_files/figure-html/deaths_per_country-2.png" width="672" /></p>
+<p><strong>Grafieken met parameter year</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="covid-19-data.html#cb15-1" tabindex="-1"></a>deaths_by_country <span class="ot">&lt;-</span> covid19_data_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="covid-19-data.html#cb15-2" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">year =</span> params<span class="sc">$</span>year, countries) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="covid-19-data.html#cb15-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_deaths_country =</span> <span class="fu">sum</span>(deaths, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb15-4"><a href="covid-19-data.html#cb15-4" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="covid-19-data.html#cb15-5" tabindex="-1"></a>cases_by_country <span class="ot">&lt;-</span> covid19_data_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb15-6"><a href="covid-19-data.html#cb15-6" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">year =</span> params<span class="sc">$</span>year, countries) <span class="sc">%&gt;%</span></span>
+<span id="cb15-7"><a href="covid-19-data.html#cb15-7" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_cases_country =</span> <span class="fu">sum</span>(cases, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb15-8"><a href="covid-19-data.html#cb15-8" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="covid-19-data.html#cb15-9" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="covid-19-data.html#cb15-10" tabindex="-1"></a><span class="fu">ggplot</span>(deaths_by_country, <span class="fu">aes</span>(<span class="at">x =</span> countries, <span class="at">y =</span> total_deaths_country, <span class="at">fill =</span> countries)) <span class="sc">+</span></span>
+<span id="cb15-11"><a href="covid-19-data.html#cb15-11" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="covid-19-data.html#cb15-12" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;Deaths by Country in&quot;</span>, params<span class="sc">$</span>year),</span>
+<span id="cb15-13"><a href="covid-19-data.html#cb15-13" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Country&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Total Deaths&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb15-14"><a href="covid-19-data.html#cb15-14" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+<p><img src="Portfolio_files/figure-html/year-1.png" width="672" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="covid-19-data.html#cb16-1" tabindex="-1"></a><span class="fu">ggplot</span>(cases_by_country, <span class="fu">aes</span>(<span class="at">x =</span> countries, <span class="at">y =</span> total_cases_country, <span class="at">fill =</span> countries)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="covid-19-data.html#cb16-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="covid-19-data.html#cb16-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;cases by Country in&quot;</span>, params<span class="sc">$</span>year),</span>
+<span id="cb16-4"><a href="covid-19-data.html#cb16-4" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Country&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Total cases&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb16-5"><a href="covid-19-data.html#cb16-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+<p><img src="Portfolio_files/figure-html/year-2.png" width="672" /></p>
+<p><strong>Grafieken met parameter month</strong></p>
 
 </div>
             </section>
