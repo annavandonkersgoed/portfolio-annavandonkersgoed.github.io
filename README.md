@@ -10,7 +10,8 @@ In dit portfolio laat ik de skills zien die ik heb geleerd doormiddel van portfo
 
 ### Dependencies
 
-* Bookdown R package 
+* Bookdown R package
+* Alle data is verkregen door de HU canvas site. 
 
 ### Executing program
 
