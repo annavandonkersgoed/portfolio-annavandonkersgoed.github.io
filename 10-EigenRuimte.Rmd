@@ -1,3 +1,13 @@
-# Eigen ruimte 
+# Vrije ruimte
 
-hier komt mijn eigen ruimte te staan 
+Als vrije ruimte heb ik het programma DeepMicrobes gekozen. Dit gedeelte van het portfolio draait om een onderwerp kiezen en deze skill te leren of ermee te beginnen.
+
+DeepMicrobes is een programma wat de taxonomische classificatie bepaald door middel van deep learning.
+
+Opgestelde doelen:
+
+-   Verschillende outputs van data omezetten naar dezelfde ouput (FASTA)
+
+-   Uitzoeken hoe voorspellingen werken en hoe een programma daarmee werkt
+
+-   Principe van deep neural networks gebruiken en een begrip voor hoe neural networks getriand worden.

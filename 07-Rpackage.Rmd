@@ -1,3 +1,5 @@
 # R package 
 
-Hier komt mijn R package te staan 
+R packages zijn functies die makkelijk opgeroepen en gebruikt kunnen worden. In deze opdracht wordt er zelf een R package gemaakt. Omdat ik zelf geen herhalende code kon vinden in mijn portfolio is er een R package gemaakt die de verdunningsfactor berekend. 
+
+

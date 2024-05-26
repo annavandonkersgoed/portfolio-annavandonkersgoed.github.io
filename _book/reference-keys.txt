@@ -15,5 +15,5 @@ reletional-databases
 r-package
 introductie-project-amr
 covid-19-data-parameters
-eigen-ruimte
+vrije-ruimte
 bronnen
