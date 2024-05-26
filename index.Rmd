@@ -17,6 +17,6 @@ params:
   end_month: 6
 ---
 
-# Portfolio Data science for biology 2
+# Portfolio DSFB2
 
-Info over portfolio 
+In dit portfolio staan alle portfolio opdrachten van het vak Data Science for Biology 2. In dit portfolio laat ik zien welke skills ik heb geleerd deze cursus. 

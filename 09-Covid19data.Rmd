@@ -24,7 +24,7 @@ Als eerste stap word de data ingelezen.
 
 ```{r }
 #Inladen van de data 
-covid19_data <- read.csv(here::here("data-raw", "Data060", "data.csv"))
+covid19_data <- read.csv(here::here("data-raw", "Data040", "data.csv"))
 colnames(covid19_data)[7] <- "countries"
 #Dataframe veranderen naar een tibble
 covid19_data_tbl <- as_tibble(covid19_data)
