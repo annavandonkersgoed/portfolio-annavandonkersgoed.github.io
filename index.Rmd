@@ -1,7 +1,7 @@
 ---
 title: "Portfolio DataScience for Biology"
 author: "Anna van Donkersgoed"
-date: "26-05-2024"
+date: '`r Sys.Date()`'
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
@@ -10,6 +10,9 @@ output:
 documentclass: book
 bibliography: references.bib 
 description: "Dit is het portfolio van Anna van Donkersgoed voor het vak Data Science for biology 2"
+github-repo: annavandonkersgoed/portfolio-annavandonkersgoed.github.io
+favicon: images/DNAfavicon.jpg
+url: https://github.com/annavandonkersgoed/portfolio-annavandonkersgoed.github.io
 params:
   countries: "Netherlands"
   year: 2022
@@ -17,6 +20,7 @@ params:
   end_month: 6
 ---
 
-# Portfolio DSFB2
+# Portfolio introductie 
 
-In dit portfolio staan alle portfolio opdrachten van het vak Data Science for Biology 2. In dit portfolio laat ik zien welke skills ik heb geleerd deze cursus. 
+Mijn naam is Anna van Donkersgoed en dit is mijn portfolio voor het vak DataScience for Biology 2 bij de opleiding Life Sciences aan de HU. In dit portfolio laat ik de belangrijke skills zien die ik geleerd heb tijdens dit vak, zoals reproduceerbaarheid en sql. 
+

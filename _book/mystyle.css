@@ -1,9 +1,17 @@
+
 /* Header */
-h1{color: black;
+h1 {color:#244417;
    text-align: center;
-   border-bottom: 2px solid black;
-   font-family: "Times New Roman", Times, serif;
+   border-bottom: 2px solid #464545;
+   font-family: Arial, Helvetica, sans-serif;;
 }
+
+h2 {color: #437E2B;
+   text-align: center;
+   border-bottom: 2px solid #464545;
+   font-family: Arial, Helvetica, sans-serif;;
+}
+
 
 /* The next two rules make the horizontal line go straight across in top navbar */
 .summary > li:first-child {
@@ -25,15 +33,32 @@ h1{color: black;
   margin-bottom: 0.85em; /* adds same amount of margin as a <p> would */
 }
 
-p.caption {
-  color: 	lightblue;
-  margin-top: 20px;
-}
-
 .book .book-body .page-wrapper .page-inner section.normal pre {
-    background: #fff;
+    background: #FFF;
     border: 1px solid #ddd;
     border-color: #000;
 }
 
+/*____Custom text____*/
 
+/*-----Body Links-------*/
+
+.book .book-body .page-wrapper .page-inner section.normal a {
+  color: #8e7cc3;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal a:hover {
+color: #351c75; /* darker color when hovering */
+text-decoration: none;
+}
+
+
+/*------------ TOC --------------*/
+
+.book .book-summary {
+  background: #f8fff5;;
+}
+
+.summary a:hover {
+  color: #351c75 !important;
+}

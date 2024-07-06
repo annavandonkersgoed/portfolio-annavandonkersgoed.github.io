@@ -1,0 +1,59 @@
+# Open peer review
+
+In deze opdracht wordt er gekeken naar reproduceerbaarheid. Reproduceerbaarheid is erg belangrijk om onderzoeken betrouwbaar te maken en om samen te werken. Om kennis over reproduceerbaarheid te laten zien wordt er een zelf uitgezocht artikel beoordeeld doormiddel van de [Repita criteria](https://www.researchgate.net/publication/340244621_Reproducibility_and_reporting_practices_in_COVID-19_preprint_manuscripts) om te kijken of dit artikel reproduceerbaar is.
+
+Beoordeelde artikel: [link](https://www.biorxiv.org/content/10.1101/2023.09.13.557574v2.full)
+
+Naam van beoordeelde artikel: Testing the effectiveness of a commercially sold probiotic on restoring the gut microbiota of honey bees: a field study
+
+Beoordeling:
+
+| Transparency cirteria       | Response Type                                                       |
+|-----------------------------|---------------------------------------------------------------------|
+| Study Purpose               | Yes                                                                 |
+| Data Availability Statement | Yes                                                                 |
+| Data Location               | Online                                                              |
+| Study Location              | Yes, Dallas, North Carolina & Greensboro, NC                        |
+| Author Review               | Tier 3, Author used institutional email address as primary contact. |
+| Ethics Statement            | No                                                                  |
+| Funding Statement           | Yes                                                                 |
+| Code Availability           | No                                                                  |
+
+**Testing the effectiveness of a commercially sold probiotic on restoring the gut microbiota of honey bees: a field study**
+
+In Amerika krijgen bijen antibiotica (Terra-Pro) tegen bacteriën die ziektes veroorzaken zoals de bacteriën Paenibacillus larvae en Melissococcus plutonius. Echter is deze antibiotica slecht voor darm gezondheid van de bij. Het zorgt er onder andere voor dat het immuun systeem minder goed werkt. Om de darmgezondheid te verbeteren wordt probiotica (DFM) gebruikt.
+
+Het doel van het experiment is om te kijken of probiotica een significant effect heeft op de darm gezondheid van de bij na het gebruik van antibiotica.
+
+De hypothese is dat de darmmicrobiota van honingbijen niet wordt hersteld door DMF na het gebruik van antibiotica vanwege het gebrek aan inheemse bacteriën van de honingbij in de probiotica.
+
+Dit werd getest door 9 bijenkorven te gebruiken die zijn opgedeeld in 3 groepen. Groep 1 is de controle groep met geen toevoeging van een stof. Groep 2 heeft Terra-pro gekregen en groep 3 heeft Terra-pro met DMF gekregen. Er werden op week 0, 1 en 2 monsters genomen van 15 bijen uit elke korf. Daarna werden de darmen van de monsters geëxtraheerd. Vervolgens werd er PCR voor amplificatie van het DNA uit de darm gebruikt gevolgd door een sequence analyse en een qPCR om de abundantie van de bacteriën te kunnen bepalen. . Op de verkregen data werd een taxonomy classifier gebruikt.
+
+De controle groep heeft significant een verschil in phylogenetische diversiteit vergeleken met de Terra-pro en Terra-pro + DMF groepen. Ook heeft de controlegroep een afnamen in AV's. De Terra-pro groep heeft een hogere abundantie en de Terra-pro met DMF heeft een lagere abundantie.
+
+Verschillen in de relatieve abundantie zijn een afname in *Snodgrassella* in de Terra-pro en Terra-pro + DMF groepen en een toename in *Lactobacillus* in de Terra-pro groep. DMF probiotica bacteriën zijn niet gevonden in de monsters van de darmen van de bijen.
+
+<div class="figure">
+<img src="images/F4.large.jpg" alt="Average relative abundance" width="700px" />
+<p class="caption">(\#fig:unnamed-chunk-1)Average relative abundance</p>
+</div>
+
+Er is geconcludeerd dat in theorie probiotica een belovende oplossing is in de gezondheid van de bij als er inheemse bacteriën van de bijen in de probiotica voorkomen.
+
+**Reproduceerbaarheid R project**
+
+Om reproduceerbaarheid verder in deze opdracht te laten zien wordt er gekeken naar een uitgekozen R code project. Dit project bevat een Rmarkdown document en een dataset. Het Rmarkdown document wordt doorgenomen om te kijken of alles werkt.
+
+Gekozen project: COVID-19 Vaccine paper [Link naar project](https://osf.io/kzq69)
+
+Problemen bij het Rmarkdown bestand:
+
+-   Bij de read.csv moet de here::here functie gebruikt worden om het bestand in te lezen ipv de hele pathway
+
+-   Warning in de data: string 8 en 257 zijn invalid. Er zitten karakters bij die niet numeric zijn. Hiervoor moeten de kolommen van datatype worden veranderd. Daarvoor is de volgende code gebruikt: data \<- data %\>% mutate(Age = gsub("[\^0-9]", "", Age), Income = gsub("[\^0-9]", "", Income))
+
+-   Bij de ggsave command weer een pathway genoemd ipv een here::here command
+
+-   Weinig waarden in het bestand. Veel mist waardoor de grafieken niet gemaakt kunnen worden.
+
+Ik geef de reproduceerbaarheid van de data een 1 aangezien het mij niet is gelukt om het project te visualiseren. Dit komt doordat er veel data mist en de data die er is niet helemaal klopt.
