@@ -1,5 +1,5 @@
-# Open peer review
-
+# Reproduceerbaarheid
+## Reproduceerbaarheid Open peer review
 In deze opdracht wordt er gekeken naar reproduceerbaarheid. Reproduceerbaarheid is erg belangrijk om onderzoeken betrouwbaar te maken en om samen te werken. Om kennis over reproduceerbaarheid te laten zien wordt er een zelf uitgezocht artikel beoordeeld doormiddel van de [Repita criteria](https://www.researchgate.net/publication/340244621_Reproducibility_and_reporting_practices_in_COVID-19_preprint_manuscripts) om te kijken of dit artikel reproduceerbaar is.
 
 Beoordeelde artikel: [link](https://www.biorxiv.org/content/10.1101/2023.09.13.557574v2.full)
@@ -44,6 +44,7 @@ knitr::include_graphics(
 
 Er is geconcludeerd dat in theorie probiotica een belovende oplossing is in de gezondheid van de bij als er inheemse bacteriën van de bijen in de probiotica voorkomen.
 
+## Reproduceerbaarheid R project 
 **Reproduceerbaarheid R project**
 
 Om reproduceerbaarheid verder in deze opdracht te laten zien wordt er gekeken naar een uitgekozen R code project. Dit project bevat een Rmarkdown document en een dataset. Het Rmarkdown document wordt doorgenomen om te kijken of alles werkt.

@@ -10,7 +10,9 @@ cirriculum-vitea
 looking-ahead
 guerilla-analytics
 c.elegans-plate-experiment
-open-peer-review
+reproduceerbaarheid
+reproduceerbaarheid-open-peer-review
+reproduceerbaarheid-r-project
 reletional-databases
 r-package
 introductie-project-amr
