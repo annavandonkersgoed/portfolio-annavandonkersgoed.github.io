@@ -7,7 +7,7 @@ library(readxl)
 library(dplyr)
 ```
 
-In het experiment wat gebruikt wordt voor deZe opdracht zijn C.elegans nematoden bloodgesteld aan verschillende concentraties van verschillende stoffen. Het doel van het experiment is om te kijken wat het effect van de bepaalde stof is op het aantal nakomelingen van de C.elegans. Het aantal nakomelingen werden geteld en is dus de data waar we naar gaan kijken. De data uit het experiment wordt in deze opdracht geanalyseerd.
+In het experiment wat gebruikt wordt voor deze opdracht zijn C.elegans nematoden bloodgesteld aan verschillende concentraties van verschillende stoffen. Het doel van het experiment is om te kijken wat het effect van de bepaalde stof is op het aantal nakomelingen van de C.elegans. Het aantal nakomelingen werden geteld en is dus de data waar we naar gaan kijken. De data uit het experiment wordt in deze opdracht geanalyseerd.
 
 *Het experiment is uitgevoerd door J. Louter (INT/ILC)*
 
@@ -64,7 +64,7 @@ Celegans_plot <- ggplot(data = Celegans_dataset_no.na, aes(x = compConcentration
        x = "Concentratie (nM) ") +
   theme_classic()
 
-Celegans_plot 
+Celegans_plot
 ```
 
 Uit de bovenstaande grafiek is te zien dat de positieve controle voor het experiment Ethanol is en de negatieve controle S-medium. Dit kan ook gechekct worden met de volgende code:
