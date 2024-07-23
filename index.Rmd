@@ -22,5 +22,5 @@ params:
 
 # Portfolio introductie 
 
-Mijn naam is Anna van Donkersgoed en dit is mijn portfolio voor het vak DataScience for Biology 2 bij de opleiding Life Sciences aan de HU. In dit portfolio laat ik de belangrijke skills zien die ik geleerd heb tijdens dit vak, zoals reproduceerbaarheid en sql. 
+Mijn naam is Anna van Donkersgoed en dit is mijn portfolio voor het vak DataScience for Biology 2 bij de opleiding Life Sciences aan de HU. In dit portfolio laat ik de belangrijke vaardigheden zien die ik geleerd heb tijdens dit vak, zoals reproduceerbaarheid en sql. 
 

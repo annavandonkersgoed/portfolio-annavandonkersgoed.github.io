@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Looking ahead | Portfolio DataScience for Biology</title>
+  <title>8 R package | Portfolio DataScience for Biology</title>
   <meta name="description" content="Dit is het portfolio van Anna van Donkersgoed voor het vak Data Science for biology 2" />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Looking ahead | Portfolio DataScience for Biology" />
+  <meta property="og:title" content="8 R package | Portfolio DataScience for Biology" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Dit is het portfolio van Anna van Donkersgoed voor het vak Data Science for biology 2" />
   <meta name="github-repo" content="annavandonkersgoed/portfolio-annavandonkersgoed.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Looking ahead | Portfolio DataScience for Biology" />
+  <meta name="twitter:title" content="8 R package | Portfolio DataScience for Biology" />
   
   <meta name="twitter:description" content="Dit is het portfolio van Anna van Donkersgoed voor het vak Data Science for biology 2" />
   
@@ -23,15 +23,15 @@
 <meta name="author" content="Anna van Donkersgoed" />
 
 
-<meta name="date" content="2024-07-21" />
+<meta name="date" content="2024-07-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="images/DNAfavicon.jpg" type="image/x-icon" />
-<link rel="prev" href="cirriculum-vitea.html"/>
-<link rel="next" href="guerilla-analytics.html"/>
+<link rel="prev" href="reletional-databases.html"/>
+<link rel="next" href="introductie-project-amr.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -199,12 +199,21 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="looking-ahead" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">3</span> Looking ahead<a href="looking-ahead.html#looking-ahead" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>In 2 jaar zie ik mezelf werken voor een bedrijf wat microbiologie en datascience combineert. Het zou mij erg leuk lijken om onderzoeksvragen te beantwoorden doormiddel van zelf het onderzoek uit te voeren en daarna de verkregen data te verwerken op een reproduceerbare manier. Wat mij ook leuk lijkt is om programma’s te gebruiken of aan programma’s te werken die bepaalde bacteriën identificeren. Op dit moment gaat mijn interesse erg naar de bacteriën in het menselijke lichaam en vooral het maag-darm kanaal.</p>
-<p>Om dit doel te bereiken doe ik als specialisatie microbiologie en als minor datascience. Ook heb ik meer inzich gekregen in programmeren en het werken met bepaalde programma’s die gebruikt worden voor data analyse. Ik heb zelf in december 2023 bij een lab gekeken om een idee te krijgen hoe de toekomst eruit kan zien. Hierdoor weet ik dat het me erg interessant lijkt.</p>
-<p>Er zijn veel skills die ik wil leren. Ik wil ervoor zorgen dat ik 3 programmeertalen ken: bash, R en python en dat ik soepel met deze talen kan werken. Daarnaast lijkt het me erg interessant om mij te verdiepen in bepaalde subgebieden van datascience zoals eiwit modulering, mutatie analyses en anitlichaam ontwerp. Ik wil deze skills aan het eind van mijn studie gehaald hebben of er al mee begonnen zijn. Dit wil ik bereiken door online veel informatie op te zoeken, data te downloaden en ermee te gaan oefenen.</p>
-<p>Ik wil gaan beginnen met mutatie analyses. Hiervoor ga ik eerst informatie opzoeken online en daarna kijken welke software er toegankelijk zijn om deze analyse uit te voeren.</p>
+<div id="r-package" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">8</span> R package<a href="r-package.html#r-package" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>R packages zijn functies die makkelijk opgeroepen en gebruikt kunnen worden. In deze opdracht wordt er zelf een R package gemaakt. In de package zitten 4 fucnties en een dataset.</p>
+<p>De package heet portfunctions (portfolio functions) en is te installeren door de volgende code:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="r-package.html#cb12-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;annavandonkersgoed/portfunctions&quot;</span>)</span></code></pre></div>
+<p>de package heeft meerdere functies met code die in de bestanden van dit portfolio staan. Korte uitleg over de functies (staat ook in de vignette):</p>
+<ul>
+<li><p>Datatype: Veranderd een kolom van een dataset naar het gewenste datatype.</p></li>
+<li><p>RemoveNA: Verwijderd NA waarden uit een kolom en zorgt ervoor dat de rijen met die waarden ook verwijderd worden.</p></li>
+<li><p>NotZero: Zorgt ervoor bij het maken van een grafiek dart de waarden niet door 0 gaan.</p></li>
+<li><p>Normalization: Normaliseerd data van een specifieke waarden uit een kolom.</p></li>
+</ul>
+<p>Dataset in de package: LandBird_Monitoring
+<a href="https://catalog.data.gov/dataset/ncrn-bird-monitoring-data-2007-2017">Link naar dataset</a></p>
+<p><a href="https://github.com/annavandonkersgoed/portfunctions.git">Link naar repository</a></p>
 
 </div>
             </section>
@@ -212,8 +221,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="cirriculum-vitea.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="guerilla-analytics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="reletional-databases.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introductie-project-amr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8 R package | Portfolio DataScience for Biology</title>
+  <title>11 Vrije ruimte | Portfolio DataScience for Biology</title>
   <meta name="description" content="Dit is het portfolio van Anna van Donkersgoed voor het vak Data Science for biology 2" />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8 R package | Portfolio DataScience for Biology" />
+  <meta property="og:title" content="11 Vrije ruimte | Portfolio DataScience for Biology" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Dit is het portfolio van Anna van Donkersgoed voor het vak Data Science for biology 2" />
   <meta name="github-repo" content="annavandonkersgoed/portfolio-annavandonkersgoed.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8 R package | Portfolio DataScience for Biology" />
+  <meta name="twitter:title" content="11 Vrije ruimte | Portfolio DataScience for Biology" />
   
   <meta name="twitter:description" content="Dit is het portfolio van Anna van Donkersgoed voor het vak Data Science for biology 2" />
   
@@ -23,15 +23,15 @@
 <meta name="author" content="Anna van Donkersgoed" />
 
 
-<meta name="date" content="2024-07-21" />
+<meta name="date" content="2024-07-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="images/DNAfavicon.jpg" type="image/x-icon" />
-<link rel="prev" href="reletional-databases.html"/>
-<link rel="next" href="introductie-project-amr.html"/>
+<link rel="prev" href="covid-19-data-parameters.html"/>
+<link rel="next" href="bronnen.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -199,12 +199,19 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-package" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">8</span> R package<a href="r-package.html#r-package" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>R packages zijn functies die makkelijk opgeroepen en gebruikt kunnen worden. In deze opdracht wordt er zelf een R package gemaakt. Omdat ik zelf geen herhalende code kon vinden in mijn portfolio is er een R package gemaakt die berekeningen doet met concentraties.</p>
-<p>De package heet conculations (concentration calculations) En is te installeren door de volgende code:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="r-package.html#cb12-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;account_name/conculations&quot;</span>)</span></code></pre></div>
-<p>Het doel van de package is om berekeningen uit te voeren. Ik ben van plan om de package uit te breiden zodat er steeds moeilijkere berekeningen erbij komen. Link naar de repository van de package is hier: <a href="https://github.com/annavandonkersgoed/conculations.git">Repository</a></p>
+<div id="vrije-ruimte" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">11</span> Vrije ruimte<a href="vrije-ruimte.html#vrije-ruimte" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>DeepMicrobes is een programma wat de taxonomische classificatie bepaald door middel van deep learning. Taxonomische classificatie kan bijvoorbeeld door Kraken. Kraken heeft echter een taxonimische tree nodig om classificatie te kunnen uitvoeren. Als de species niet in de tree zitten dan kan Kraken ze niet identificeren. Om dit te omzeilen gebruikt DeepMicrobes een deep learning neural network om .. te trainen. #DeepMicrobes</p>
+<p>DeepMicrobes is te downloaden via GitHub: <a href="https://github.com/MicrobeLab/DeepMicrobes">Klik hier om naar de Github pagina te gaan</a></p>
+<p>Eerst ga ik het classificatie programma installeren en gebruiken op data.</p>
+<p>Installatie volgens de github pagina:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="vrije-ruimte.html#cb20-1" tabindex="-1"></a><span class="co">#Kloneer de repository van DeepMicrobes naar Rstudio </span></span>
+<span id="cb20-2"><a href="vrije-ruimte.html#cb20-2" tabindex="-1"></a>git clone https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>MicrobeLab<span class="sc">/</span>DeepMicrobes.git</span>
+<span id="cb20-3"><a href="vrije-ruimte.html#cb20-3" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="vrije-ruimte.html#cb20-4" tabindex="-1"></a><span class="co">#DeepMicrobes environment aanmakeneeeeeeeeeeeeee</span></span>
+<span id="cb20-5"><a href="vrije-ruimte.html#cb20-5" tabindex="-1"></a>conda env create <span class="sc">-</span>f DeepMicrobes<span class="sc">/</span>install.yml</span></code></pre></div>
+<p>Na het testen van DeepMicrobes worden er verschillende datasets gebruikt om te laten zien dat er mee gewerkt kan wordenL: De datasets die gebruikt worden:</p>
+<p>Als laatst kijk ik naar of ik zelf een neural network kan trainen</p>
 
 </div>
             </section>
@@ -212,8 +219,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="reletional-databases.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introductie-project-amr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="covid-19-data-parameters.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bronnen.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
