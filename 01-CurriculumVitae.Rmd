@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(vitae)
 ```
 
-Mijn naam is Anna van Donkersgoed en ik ben momenteel derdejaars student
+Mijn naam is Anna en ik ben momenteel derdejaars student
 aan de opleiding Life Sciences aan de Hogeschool Utrecht. Mijn
 specialisatie is Microbiologie met als minor Data Science. Ik ben een
 behulpzaam en leergierig persoon. Ik ben momenteel op zoek naar een
