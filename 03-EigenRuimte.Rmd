@@ -1,0 +1,66 @@
+# Image analysis 
+
+Image analysis is een techniek in R om afbeelding te analyseren op veel verschillende dingen. In dit gedeelte ga ik kijken op welke manieren afbeeldingen geanalyseerd kunnen worden, wat het verschil is tussen de manieren en ga ik fluorescentie afbeeldingen analyseren. Dit omdat ik deze techniek ook ga gebruiken op mijn stage. 
+
+## Afbeelding analyseren d.m.v. EBImage 
+
+Er zijn verschillende manieren waarmee afbeeldingen geanalyseerd kunnen worden met R. Met de EBImage package kunnen afbeeldingen worden geanalyseerd, ook op basis van pixels.
+
+```{r, eval = FALSE}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("EBImage")
+```
+
+Tijdens dit voorbeeld wordt er gekeken naar het verschil tussen S. gordonii die een uur en twee uur geïncubeerd is in een welletje van een 24 wells plaat. De eerste stap is om de afbeelding in te laden. 
+```{r}
+#Library loaden 
+library(EBImage)
+Image1_path <- here::here("images", "S.gordonii_1h.jpg")
+Image1 <- readImage(Image1_path)
+
+#Eigenschappen van de afbeelding 
+print(Image1)
+
+#Afbeelding printen 
+display(Image1)
+``` 
+
+Om het verschil tussen de pixels goed te kunnen zien wordt de afbeelding zwart en wit gemaakt. Hierbij hebben de pixels een waarde van 0 of 1. 
+
+```{r}
+Image1 <- getFrame(Image1, 1)
+threshold <- otsu(Image1)
+thresh_Image1 <- Image1 < threshold
+
+display(thresh_Image1)
+
+nmask <- watershed( distmap(thresh_Image1), 5)
+display(colorLabels(nmask))
+
+Percentage_cellen_1h <- (length(which(nmask > 0.5))/length(nmask) * 100) 
+
+```
+
+Nu is het interessant om te kijken of er een groot verschil is in cellen bij een incubatie van 1 uur versus een incubatie van 2 uur. 
+
+```{r}
+Incubatie_2h_path <- here::here("images", "S.gordonii_2h.png")
+Incubatie_2h <- readImage(Incubatie_2h_path)
+display(Incubatie_2h)
+
+Incubatie_2h <- getFrame(Incubatie_2h, 1)
+threshold <- otsu(Incubatie_2h)
+thresh_Incubatie_2h <- Incubatie_2h < threshold
+
+display(thresh_Incubatie_2h)
+
+nmask_2h <- watershed( distmap(thresh_Incubatie_2h), 5)
+display(colorLabels(nmask_2h))
+
+length(table(bwlabel(thresh_Incubatie_2h)))
+
+Percentage_cellen_2h <- (length(which(nmask > 0.5))/length(nmask_2h) * 100) 
+
+```

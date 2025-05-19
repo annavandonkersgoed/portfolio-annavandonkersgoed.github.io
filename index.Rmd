@@ -3,6 +3,7 @@ title: "Portfolio DataScience for Biology"
 author: "Anna van Donkersgoed"
 date: '`r Sys.Date()`'
 site: bookdown::bookdown_site
+new_session: yes
 output:
   bookdown::gitbook:
     css: mystyle.css
@@ -20,7 +21,6 @@ params:
   end_month: 6
 ---
 
-# Portfolio introductie 
-
-Mijn naam is Anna van Donkersgoed en dit is mijn portfolio voor het vak DataScience for Biology 2 bij de opleiding Life Sciences aan de HU. In dit portfolio laat ik de belangrijke vaardigheden zien die ik geleerd heb tijdens dit vak, zoals reproduceerbaarheid en sql. 
+# Introductie portfolio 
+Mijn naam is Anna van Donkersgoed en ik ben derdejaars student Life Sciences aan de Hogeschool Utrecht. Ik volg een minor Data Science for Biology waarbij dit portfolio hoor. In dit portfiolio neem ik jullie mee met de dingen die ik tijdens dit vak geleerd heb en mijn toekomstige plannen. 
 

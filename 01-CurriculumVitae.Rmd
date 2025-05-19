@@ -11,12 +11,10 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(vitae)
 ```
 
-Mijn naam is Anna en ik ben momenteel derdejaars student
-aan de opleiding Life Sciences aan de Hogeschool Utrecht. Mijn
-specialisatie is Microbiologie met als minor Data Science. Ik ben een
-behulpzaam en leergierig persoon. Ik ben momenteel op zoek naar een
-stage waarin ik mijn vaardigheden en het geleerde van mijn opleiding kan
-gaan toepassen.
+Mijn naam is Anna en ik ben derdejaars bachelor student Life Sciences
+aan de Hogeschool Utrecht met een specialisatie in Microbiologie en een
+minor in Data Sciences. Ik ben sociaal, gemotiveerd en nieuwsgierig en
+kijk er erg naar uit om praktijkervaring op te doen.
 
 **Contactgegevens**
 
@@ -24,82 +22,85 @@ gaan toepassen.
 
 -   Mail: anna.vandonkersgoed\@student.hu.nl
 
-Opleidingen
+**Talen**
 
-| Jaar        | Diploma                 | School                | Plaats                |
-|-------------|-------------------------|-----------------------|-----------------------|
-| 2020-heden  | Life Sciences           | Hogeschool Utrecht    | Utrecht, Nederland    |
-| 2021        | propedeuse Life Scieces | Hogeschool Utrecht    | Utrecht, Nederland    |
-| 2015 - 2020 | HAVO                    | Anna van Rijn college | Nieuwegein, Nederland |
+-   Nederlands (moedertaal)
 
-**Laboratorium vaardigheden**
+-   Engels
 
--   **Microbiologische technieken**: Tijdens mijn opleiding heb ik
-    verschillende microbiologische technieken geleerd. Voorbeelden
-    hiervan zijn het maken van een grampreparaat, verdunningsreeksen en
-    reinkweken maken, platen aanenten met bacteriën en deze bacterie
-    kolonies doorzetten.
+**Opleidingen**
 
--   **Project influenza**: Ik heb ook een microbiologisch project gehad
-    op school wat over het verloop en de determinatie van het influenza
-    virus ging. In het project werd er gekeken naar of patiënten het
-    influenza virus hebben/hebben gehad door middel van real time PCR en
-    determinatie testen.
+| Jaar | Diploma | School | Plaats |
+|----|----|----|----|
+| 2020-heden | Life Sciences | Hogeschool Utrecht | Utrecht, Nederland |
+| 2021 | propedeuse Life Scieces | Hogeschool Utrecht | Utrecht, Nederland |
+| 2015 - 2020 | HAVO | Anna van Rijn college | Nieuwegein, Nederland |
 
--   **Bacteriën identificeren**: Ik heb geleerd hoe bacteriesoorten zijn
-    te identificeren, op welke kenmerken er gelet moeten worden en welke
-    testen er gebruikt kun worden om de soorten te identificeren. Een
-    voorbeeld van de testen die wij gebruikt hebben zijn de Vitek, de
-    API, de streptex en de katalase test.
+**Technieken en vaardigheden**
 
-**Datascience vaardigheden**
+-   MALDI-TOF PCR
 
--   **Programmeertalen**: bash en R
--   **RNA sequencing**: Ik heb geleerd hoe RNA sequencing data verwerkt
-    kan worden om te achterhalen welke genen erg tot expressie komen.
-    Dit werd gedaan doormiddel van PCA, heatmaps, volcano plots en een
-    GO enrichment analyse.
--   **Metagenomics**: Ik heb geleerd hoe een metagenomics analyse
-    uitgevoerd wordt doormiddel van kraken2 en bracken. Ook heb ik
-    gewerkt met het programma DeepMicrobes om taxonomische classificatie
-    uit te voeren zonder een voledige database door middel van deep
-    learning.
+-   Vitek Bacteriekweek + anaëroob kweken
 
-**Overige vaardigheden**
+-   MIC bepaling
 
--   **Excel**
--   **Talen**: Nederlands moedertaal, Engels hoog niveau
+-   Celkweek
+
+-   NGS data verwerken
+
+-   Metagenomics data verwerken
+
+-   R
+
+-   bash
+
+-   Excel
+
+**Project ervaringen**
+
+Project Parodontitis
+
+-   Onderzoek naar naar binding van Porphyromonas gingivalis aan
+    verschillende oppervlakten (o.a. Streptococcus gordonii)
+
+-   Effect van ijzer op bacteriële binding
+
+-   Toepassing van anaërobe techieken (bactron600)
+
+-   Ontwikkeling van flexibiliteit in onderzoeksaanpak
+
+**Project Antimicrobiële resistentie**
+
+-   Ontwikkeling van een bioinformatica pipeline voor analyse van
+    antimicrobiële resistentie.
+
+-   Data visualisatie d.m.v. een interactieve R Shiny app.
+
+-   Toepassing van GitHub
+
+-   Projectplanning en samenwerken in een Agile omgeving
 
 **Werkervaring**
 
-| Jaar        | Functie          | Bedrijf                                | Plaats                   |
-|-------------|------------------|----------------------------------------|--------------------------|
-| 2022 - 2024 | Horecamedewerker | DE KOM, stadstheater en kunstencentrum | Nieuwegein, Utrecht      |
-| 2021 - 2022 | Horecamedewerker | de Kraam                               | Nieuwegein, Utrecht      |
-| 2019 - 2021 | Vakkenvuller     | Boon's mark                            | Makadocenter, Nieuwegein |
+| Jaar | Functie | Bedrijf | Plaats |
+|----|----|----|----|
+| 2022 - 2024 | Horecamedewerker | DE KOM, stadstheater en kunstencentrum | Nieuwegein, Utrecht |
+| 2021 - 2022 | Horecamedewerker | de Kraam | Nieuwegein, Utrecht |
+| 2019 - 2021 | Vakkenvuller | Boon's mark | Makadocenter, Nieuwegein |
 
 **Vrijwilligerswerk**
 
-| Jaar         | Vrijwilliger                    | Organisatie           | Plaats                 |
-|--------------|---------------------------------|-----------------------|------------------------|
-| 2021 - heden | Leiding, leeftijd 7 tot 12 jaar | Scouting Jan van Hoof | Nieuwegein, Utrecht    |
-| 2019 - 2021  | Leiding, leeftijd 5 tot 7 jaar  | Scouting Jan van Hoof | Nieuwegein, Nieuwegein |
-
-Ik geef elke week leiding bij scouting. Ik heb in de tijd dat ik leiding
-geef op scouting geleerd hoe je goed kan samenwerken en goed kan
-communiceren. Zelf zit ik ook in het bestuur van mijn eigen
-leeftijdsgroep en heb ik daar de functie secretaris.
+| Jaar | Vrijwilliger | Organisatie | Plaats |
+|----|----|----|----|
+| 2021 - heden | Leiding, leeftijd 7 tot 12 jaar | Scouting Jan van Hoof | Nieuwegein, Utrecht |
+| 2019 - 2021 | Leiding, leeftijd 5 tot 7 jaar | Scouting Jan van Hoof | Nieuwegein, Nieuwegein |
 
 **Competenties:**
 
--   Analytisch
-
--   Creatief
+-   Flexibel
 
 -   Oplossingsgericht
 
--   Sociaal
+-   Samenwerken
 
--   Behulpzaam
-
--   Luisterend
+-   Organiseren

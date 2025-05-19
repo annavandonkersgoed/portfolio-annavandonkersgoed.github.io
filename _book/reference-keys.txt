@@ -5,9 +5,9 @@ fig:unnamed-chunk-6
 fig:unnamed-chunk-7
 fig:unnamed-chunk-8
 fig:unnamed-chunk-9
-portfolio-introductie
+introductie-portfolio
 cirriculum-vitea
-looking-ahead
+plan-voor-de-toekomst.
 guerilla-analytics
 c.elegans-plate-experiment
 reproduceerbaarheid
@@ -17,5 +17,6 @@ reletional-databases
 r-package
 introductie-project-amr
 covid-19-data-parameters
-vrije-ruimte
+image-analysis
+afbeelding-analyseren-d.m.v.-ebimage
 bronnen
