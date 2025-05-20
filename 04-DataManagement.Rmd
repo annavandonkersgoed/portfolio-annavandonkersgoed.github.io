@@ -1,0 +1,37 @@
+# Data management 
+
+Het is belangrijk om bewust bezig te zijn met data en datastructuren. Hierbij speelt de Guerilla analytics principles een grote rol. Een paar voorbeelden van deze principes zijn het goed ordenen van data, alles automatiseren met code, reproducirbaar werken en een version control gebruiken zoals Git en Github. 
+
+Hier zijn de eerst genoemde principe uitgebeeld, het goed en duidelijk ordenen van data. Dit is erg belangrijk om bestanden niet kwijt te raken en een goed overzicht te houden. 
+
+## RNA sequencing folderstructuur  
+
+Tijdens het eerste deel van de minor DSFB is er gewerkt met RNA sequencing data. Deze bestanden zijn in de onderstaande afbeelding gesorteerd volgens het principe. Hierbij is ook een README bestand aanwezig. 
+
+```{r foldertree,  out.width = "250px", fig.cap="Folder tree, Daur2 indeling van bestanden", echo = FALSE}
+knitr::include_graphics(
+  here::here(
+    "images",
+    "Foldertree_Daur2.png"
+  )
+)
+
+```
+
+```{r readme,  out.width = "500px", fig.cap="Daur2 README", echo = FALSE}
+knitr::include_graphics(
+  here::here(
+    "images",
+    "README_Daur2.png"
+  )
+)
+
+```
+
+
+## Portfolio folderstructuur 
+
+De regels van de Guerilla analytics worden ook toegepast op de repository van dit portfolio. 
+
+
+

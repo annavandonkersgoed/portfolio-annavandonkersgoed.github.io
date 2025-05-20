@@ -1,0 +1,9 @@
+# Plan voor de toekomst. 
+
+In dit gedeelte van het portfolio laat ik zien wat mijn plannen zijn voor de toekomst.
+
+In 2 jaar zie ik mezelf werken voor een bedrijf wat microbiologie en datascience combineert. Het lijkt mij erg interessant om onderzoek te doen naar de microbiota en te kijken naar wat voor interacties micro-organismen met elkaar aan kunnen gaan. Hierbij lijkt het me leuk om zelf het protocol uit te voeren en de verkregen data te verwerken. Een paar technieken die ik daarbij wil gebruiken zijn het analyseren van afbeeldingen via R, mutatie analyses voor de fylogenie van bacteriën en het identificeren van bacteriën d.m.v. technieken zoals metagenomics. 
+
+Om dit doel te bereiken heb ik als specialisatie microbiologie gedaan en als minor datascience. Hierbij heb ik meer inzicht gekregen over hoe projecten het best opgesteld kunnen worden en hoe data goed en reproduceerbaar uitgewerkt moet worden. Ik heb R en bash geleerd en ik heb geleerd hoe metagenomics data uitgewerkt moet worden. Om in de toekomst in het werkvel werken moet ik nog wel wat vaardigheden bereiken. 
+
+Er zijn nog wat vaardigheden die me interessant lijken om in de toekomst te leren. Hieronder vallen eiwit modulering, mutatie analyses, anitlichaam ontwerp. Ik wil begonnen zijn om deze vaardigheden te leren aan het eind van mijn studie. Dit wil ik bereiken door online veel informatie op te zoeken, data te downloaden en ermee te gaan oefenen. 

@@ -1,0 +1,310 @@
+---
+title: "Portfolio DataScience for Biology"
+author: "Anna van Donkersgoed"
+date: '`r Sys.Date()`'
+site: bookdown::bookdown_site
+new_session: yes
+output:
+  bookdown::gitbook:
+    css: mystyle.css
+    lib_dir: libs
+documentclass: book
+bibliography: references.bib 
+description: "Dit is het portfolio van Anna van Donkersgoed voor het vak Data Science for biology 2"
+github-repo: annavandonkersgoed/portfolio-annavandonkersgoed.github.io
+favicon: images/DNAfavicon.jpg
+url: https://github.com/annavandonkersgoed/portfolio-annavandonkersgoed.github.io
+params:
+  countries: "Netherlands"
+  year: 2022
+  start_month: 1
+  end_month: 6
+---
+---
+title: "Portfolio DataScience for Biology"
+author: "Anna van Donkersgoed"
+date: '`r Sys.Date()`'
+site: bookdown::bookdown_site
+new_session: yes
+output:
+  bookdown::gitbook:
+    css: mystyle.css
+    lib_dir: libs
+documentclass: book
+bibliography: references.bib 
+description: "Dit is het portfolio van Anna van Donkersgoed voor het vak Data Science for biology 2"
+github-repo: annavandonkersgoed/portfolio-annavandonkersgoed.github.io
+favicon: images/DNAfavicon.jpg
+url: https://github.com/annavandonkersgoed/portfolio-annavandonkersgoed.github.io
+params:
+  countries: "Netherlands"
+  year: 2022
+  start_month: 1
+  end_month: 6
+---
+
+# Introductie portfolio 
+Mijn naam is Anna van Donkersgoed en ik ben derdejaars student Life Sciences aan de Hogeschool Utrecht. Ik volg een minor Data Science for Biology waarbij dit portfolio hoor. In dit portfiolio neem ik jullie mee met de dingen die ik tijdens dit vak geleerd heb en mijn toekomstige plannen. 
+
+
+<!--chapter:end:index.Rmd-->
+
+
+# Cirriculum Vitea
+
+Placeholder
+
+
+
+<!--chapter:end:01-CurriculumVitae.Rmd-->
+
+# Plan voor de toekomst. 
+
+In dit gedeelte van het portfolio laat ik zien wat mijn plannen zijn voor de toekomst.
+
+In 2 jaar zie ik mezelf werken voor een bedrijf wat microbiologie en datascience combineert. Het lijkt mij erg interessant om onderzoek te doen naar de microbiota en te kijken naar wat voor interacties micro-organismen met elkaar aan kunnen gaan. Hierbij lijkt het me leuk om zelf het protocol uit te voeren en de verkregen data te verwerken. Een paar technieken die ik daarbij wil gebruiken zijn het analyseren van afbeeldingen via R, mutatie analyses voor de fylogenie van bacteriën en het identificeren van bacteriën d.m.v. technieken zoals metagenomics. 
+
+Om dit doel te bereiken heb ik als specialisatie microbiologie gedaan en als minor datascience. Hierbij heb ik meer inzicht gekregen over hoe projecten het best opgesteld kunnen worden en hoe data goed en reproduceerbaar uitgewerkt moet worden. Ik heb R en bash geleerd en ik heb geleerd hoe metagenomics data uitgewerkt moet worden. Om in de toekomst in het werkvel werken moet ik nog wel wat vaardigheden bereiken. 
+
+Er zijn nog wat vaardigheden die me interessant lijken om in de toekomst te leren. Hieronder vallen eiwit modulering, mutatie analyses, anitlichaam ontwerp. Ik wil begonnen zijn om deze vaardigheden te leren aan het eind van mijn studie. Dit wil ik bereiken door online veel informatie op te zoeken, data te downloaden en ermee te gaan oefenen. 
+
+<!--chapter:end:02-PlanVoorDeToekomst.Rmd-->
+
+
+# Image analysis 
+
+Placeholder
+
+
+## Afbeelding analyseren d.m.v. EBImage 
+
+<!--chapter:end:03-EigenRuimte.Rmd-->
+
+# Reproduceren van een data analyse
+
+```{r c.elegans, include=FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(readxl)
+library(dplyr)
+```
+
+Het is belangrijk voor data om reproduceerbaar te zijn. De data van een uitgevoerd experiment wordt geanalyseerd om te laten zien dat de data reproduceerbaar is.
+
+In het experiment wat gebruikt wordt voor deze opdracht zijn *C.elegans* nematoden bloodgesteld aan verschillende concentraties van verschillende stoffen. Het doel van het experiment is om te kijken wat het effect van de bepaalde stof is op het aantal nakomelingen van de *C.elegans*. Het aantal nakomelingen werden geteld en in een dataset geplaatst. De data uit het experiment wordt in deze opdracht geanalyseerd.
+
+Het experiment is uitgevoerd door J. Louter (INT/ILC) en de data is afkomstig van het HU lectoraat Innovative Testing in Life Sciences & ChemistryDe data die relevant is voor de uitwerking zijn:
+
+-   De ruwe data, "RawData"
+
+-   Naam van de stof, "compName"
+
+-   Concentratie van de stof, "compConcentration"
+
+De eerste stap van de analyse is om het verkregen Excel door R te laten inlezen.
+
+```{r, inlezen excel}
+Celegans_dataset <- read_excel(here::here("data-raw", "Data010", "CE.LIQ.FLOW.062_Tidydata.xlsx"), sheet = 1)
+```
+
+Na het inlezen van de data wordt de data gecontroleerd op het type.
+
+```{r, controleren data, eval = FALSE}
+str(Celegans_dataset)
+```
+
+Er zijn een paar data type die veranderd moeten worden. De ruwe data is als double maar moet een integer worden aangezien het hele getallen zijn. De concentratie is als character weergeven maar moet als numeric omdat het decimalen heeft. Als laatst moet de naam van de stof worden veranderd naar een factor omdat het categorische data is.
+
+```{r datatype}
+#RawData veranderen van dbl naar int 
+Celegans_dataset$RawData <- as.integer(Celegans_dataset$RawData)
+
+#compName veranderen van character naar factor 
+Celegans_dataset$compName <- as.factor(Celegans_dataset$compName)
+
+#compConcentration veranderen van character naar numeric 
+Celegans_dataset$compConcentration <- as.numeric(Celegans_dataset$compConcentration)
+
+#Verwijder NA waarden
+Celegans_dataset_no.na <- Celegans_dataset %>% filter(!is.na(RawData))
+```
+
+Na het veranderen van de data wordt de data tegen elkaar uitgezet in een grafiek.
+
+```{r}
+
+#Om ervoor te zorgen dat de dataset niet door 0 heen gaat voor de output van de grafiek 
+Celegans_dataset_no.na$compConcentration_offset <- Celegans_dataset_no.na$compConcentration + 0.001
+
+#Plot met de aangepaste C.elegans data met het gebruik van geom jitter 
+Celegans_plot <- ggplot(data = Celegans_dataset_no.na, aes(x = compConcentration_offset, y = RawData)) +
+  geom_jitter(aes(color = compName, shape = expType), size = 3, alpha = 0.8, width = 0.1, height = 0) +
+  scale_x_log10(labels = label_log(digits = 2)) +
+  labs(title = "Aantal nakomelingen C.elegans na incubatie",
+       subtitle = "Aantal nakomelingen van de C.elegans na de incubatie met verschillende stoffen",
+       y = "Aantal nakomelingen ",
+       x = "Concentratie (nM) ") +
+  theme_classic()
+
+Celegans_plot
+```
+
+Uit de bovenstaande grafiek is te zien dat de positieve controle voor het experiment Ethanol is en de negatieve controle S-medium. Dit kan ook gecheckt worden met de volgende code:
+
+```{r controle}
+#Check wat de negatieve controle is voor het experiment 
+Celegans_dataset_no.na %>% filter(expType ==  "controlNegative") %>% select(compName) %>% slice(1)
+
+#check wat de positieve controle is voor het experiment 
+Celegans_dataset_no.na %>% filter(expType ==  "controlPositive") %>% select(compName) %>% slice(1)
+
+#Voor de output wordt het slice command gebruikt, dit command is niet optioneel. 
+```
+
+Het nut van de verschillende controles:
+
+-   Positieve controle: De positieve controle is de conditie waarbij er een positief resultaat wordt verwacht. In dit geval zal de controle wel een effect hebben op het aantal nakomelingen van de *C.elegans*
+
+-   Negatieve controle: De negatieve controle is de conditie waarbij er een negatief resultaat wordt verwacht. In dit geval zal de negatieve controle geen effect hebben op het aantal nakomelingen van de *C.elegans*
+
+-   Vehicle controle: De vehicle controle geeft aan of de substantie waarmee de getetste stoffen zijn opgelost invloed heeft op het experiment.
+
+Om de data verder te analyseren en om een conclusie te kunnen trekken moeten er nog een paar stappen gebeuren:
+
+-   Om de verschillende stoffen met elkaar te vergelijken en om te weten of er een significant verschil is wordt er een ANOVA test gedaan.
+
+-   Voordat de test gedaan word wordt eerst de data geplot in een bargraph met de standaardvariatie erbij om alvast een beeld te krijgen over de data.
+
+-   Daarna wordt de data gecontroleerd op normaliteit doormiddel van een Shapiro-Wilk test.
+
+-   Als de data normaal verdeeld is kan er een ANOVA test worden uitgevoerd
+
+-   Als er een significant verschil is ine en groep wordt er een Post hoc test uitgevoerd om te kijken over welke stof het gaat.
+
+Normalisatie: Als laatste stap wordt de data genormaliseerd op een manier waardoor de negatieve controle gelijk is aan 1 en de rest wordt uitgedrukt als een fractie daarvan. Dit wordt gedaan zodat de data makkelijker kan worden vergeleken met de negatieve controle om een verschil te zien in de grafiek.
+
+Eerst wordt de data veranderd zodat de negatieve controle gelijk is aan 1 en de ander data een fractie daarvan.
+
+```{r}
+#Berekenen van het gemiddelde van de negatieve controle 
+Celegans_negative <- Celegans_dataset_no.na %>%
+  filter(expType == "controlNegative")
+mean_control_negative <- mean(Celegans_negative$RawData)
+#Gemiddelde van de negatieve controle is 85.9
+Celegans_dataset_norm <- Celegans_dataset_no.na
+
+#Zorg ervoor dat de data 1 is door alle waarden door het gemiddelde te delen 
+Celegans_dataset_norm$RawData <- (Celegans_dataset_norm$RawData / mean_control_negative)
+```
+
+Daarna wordt er een grafiek gemaakt van de genormaliseerde data.
+
+```{r }
+Celegans_dataset_norm$compConcentration_offset <- Celegans_dataset_norm$compConcentration + 0.001
+
+Celegans_plot_normalized <- ggplot(data = Celegans_dataset_norm, aes(x = compConcentration_offset, y = RawData)) +
+  geom_jitter(aes(color = compName, shape = expType), size = 3, alpha = 0.8, width = 0.1, height = 0) +
+  scale_x_continuous(trans = "log10", breaks = c(0.001, 0.01, 0.1, 1, 10)) +
+  labs(title = "Fractie van aantal nakomelingen C.elegans na incubatie",
+       subtitle = "Aantal nakomelingen van de C.elegans na de incubatie met verschillende stoffen",
+       y = "Fractie aantal nakomelingen",
+       x = "Concentratie (nM) ") +
+  theme_classic()
+Celegans_plot_normalized
+```
+
+<!--chapter:end:04-C.elegansPlateExperiment.Rmd-->
+
+
+# Data management 
+
+Placeholder
+
+
+## RNA sequencing folderstructuur  
+## Portfolio folderstructuur 
+
+<!--chapter:end:04-DataManagement.Rmd-->
+
+
+# Reproduceerbaarheid
+
+Placeholder
+
+
+## Reproduceerbaarheid Open peer review
+## Reproduceerbaarheid R project 
+
+<!--chapter:end:05-OpenPeerReview.Rmd-->
+
+
+# Reletional databases
+
+Placeholder
+
+
+
+<!--chapter:end:06-RelationalDatabases.Rmd-->
+
+# R package
+
+R packages zijn functies die makkelijk opgeroepen en gebruikt kunnen worden. In deze opdracht wordt er zelf een R package gemaakt. In de package zitten 4 fucnties en een dataset.
+
+De package heet portfunctions (portfolio functions) en is te installeren door de volgende code:
+
+```{r package, eval = FALSE}
+devtools::install_github("annavandonkersgoed/portfunctions")
+```
+
+de package heeft meerdere functies met code die in de bestanden van dit portfolio staan. Korte uitleg over de functies (staat ook in de vignette):
+
+-   Datatype: Veranderd een kolom van een dataset naar het gewenste datatype.
+
+-   RemoveNA: Verwijderd NA waarden uit een kolom en zorgt ervoor dat de rijen met die waarden ook verwijderd worden.
+
+-   NotZero: Zorgt ervoor bij het maken van een grafiek dart de waarden niet door 0 gaan.
+
+-   Normalization: Normaliseerd data van een specifieke waarden uit een kolom.
+
+Dataset in de package: LandBird_Monitoring
+[Link naar dataset](https://catalog.data.gov/dataset/ncrn-bird-monitoring-data-2007-2017)
+
+[Link naar repository](https://github.com/annavandonkersgoed/portfunctions.git)
+
+<!--chapter:end:07-Rpackage.Rmd-->
+
+---
+bibliography: references.bib
+---
+
+# Introductie project AMR
+
+**Introductie voor het project antimicrobiële resistentie**
+
+Tegenwoordig worden er veel antimicrobiële middelen gebruikt om infectie ziekten te behandelen en te voorkomen. Antibiotica, antivirale middelen en antiparasitaire middelen zijn voorbeelden van antimicrobiële middelen. Echter komt het steeds vaker voor dat bacteriën resistent worden tegen antimicrobiële middelen. Dit kan gebeuren doordat er al resistente bacteriën aanwezig zijn en zich vermenigvuldigen of door het te vaak gebruiken van een antibiotica. Doordat de bacteriën vaak in aanraking komen met het antibiotica gaat het zichzelf beschermen waardoor een resistentie wordt opgebouwd tegen het geneesmiddel. Het resistent worden tegen antimicrobiële middelen heet microbiële resistentie. [@AMR] [@RIVM]
+
+Antimicrobiële resistentie is een wereldwijd probleem. Om het probleem op te lossen is er een one health approach. Deze aanpak zorgt ervoor dat mensen uit verschillende sectoren samen werken en communiceren om antimicrobiële resistentie te verminderen. Voorbeelden van de sectoren zijn voedselproductie, dier- en mileusector en de gezondheidssector. De verschillende sectoren werken samen aangezien het verspreiden van antimicorbiële resistentie invloed heeft op elke sector. Ziektes worden bijvoorbeeld overgedragen van dieren naar mensen. [@onehealth]
+
+In dit project specifiek wordt er gekeken naar het uitwisselen van het resistoom tussen bacteriën. In het resistoom zitten de genen die voor de resistentie tegen de antimicrobiële middelen zorgen. Door de uitwisseling worden dus meer bacteriën resistent. Er wordt bij dit project specifiek gekeken naar de uitwisseling van het resistoom tussen bacteriën in Nederland. Er wordt verder gewerkt op een bestaande workflow waar de data uit de SRA-databank is verkregen, opgeschoond en waarbij de reconstructie van het plasmide DNA van bacteriele genomen werd bepaald. [@project]
+
+Het doel voor ons bij dit project is om van de workflow 1 pipeline te maken, ervoor zorgen dat nieuwe data makkelijk kan worden toegevoegd, een metadata bestand maken en de data visualiseren. Ook moeten er nog wat applicaties toegevoegd worden om verschillende onderdelen van de data te kunnen visualiseren waar de opdrachtgever geïnteresseerd in is. Een paar van deze onderdelen zijn het plasmide type, mobaliserbaarheid, resistentie genen en het clusteren van genen. De data moet gevisualiseerd worden in een R shiny app.
+
+Daarnaast is het doel van het project niet alleen het eindresultaat van de opdracht van de opdrachtgever, maar ook het leren om samen te werken bij een datascience project volgens de Guerrilla Analytics principes. Het is namelijk belangrijk om te leren werken met een version control software, in dit geval Git en Github om reproduceerbaar te werken. Ook is het erg belangrijk om een gestructureerde Github repository te hebben, zodat de opdrachtgever de pipeline makkelijk kan downloaden en kan gebruiken. Een voorbeeld van een gestructueerde repository is het hebben van een duidelijk project bord. Om een project soepel te laten voorlopen is het erg belangrijk om taken te hebben die duidelijk verwoord zijn en niet veel tijd kosten om uit gevoerd te worden. Dit zorgt voor een snelle samenwerking en voor een sneller eindproduct. [@agile]
+
+Niet alleen zorgt het project antimicrobiële resistentie ervoor dat er goed samen wordt gewerkt door een workflow op te stellen en reproduceerbaar te werken, ook laat het project zien hoe het op het werkveld eruit kan zien aangezien het project verkregen is door een externe opdrachtgever.
+
+<!--chapter:end:08-5.Introduction.Rmd-->
+
+
+# covid 19 data parameters
+
+Placeholder
+
+
+
+<!--chapter:end:09-Covid19data.Rmd-->
+
+# Bronnen
+
+<!--chapter:end:11-Bronnen.Rmd-->
+
