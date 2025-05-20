@@ -51,7 +51,7 @@ Incubatie_2h <- readImage(Incubatie_2h_path)
 display(Incubatie_2h)
 
 Incubatie_2h <- getFrame(Incubatie_2h, 1)
-threshold <- otsu(Incubatie_2h)
+threshold_2h <- otsu(Incubatie_2h)
 thresh_Incubatie_2h <- Incubatie_2h < threshold
 
 display(thresh_Incubatie_2h)
@@ -64,3 +64,6 @@ length(table(bwlabel(thresh_Incubatie_2h)))
 Percentage_cellen_2h <- (length(which(nmask > 0.5))/length(nmask_2h) * 100) 
 
 ```
+
+Er zijn dus bij een incubatie van 2 uur meer cellen dan bij 1 uur met een verschil van 1,1 procent. 
+

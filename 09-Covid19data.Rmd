@@ -28,6 +28,7 @@ covid19_data <- read.csv(here::here("data-raw", "Data040", "data.csv"))
 colnames(covid19_data)[7] <- "countries"
 #Dataframe veranderen naar een tibble
 covid19_data_tbl <- as_tibble(covid19_data)
+covid19_data_tbl$year <- as.factor(covid19_data_tbl$year)
 ```
 
 **Grafieken met parameter countries**

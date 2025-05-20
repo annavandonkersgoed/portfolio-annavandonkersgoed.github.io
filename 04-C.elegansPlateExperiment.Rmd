@@ -1,4 +1,4 @@
-# C.elegans plate experiment
+# Reproduceren van een data analyse
 
 ```{r c.elegans, include=FALSE, warning = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -7,11 +7,11 @@ library(readxl)
 library(dplyr)
 ```
 
-In het experiment wat gebruikt wordt voor deze opdracht zijn C.elegans nematoden bloodgesteld aan verschillende concentraties van verschillende stoffen. Het doel van het experiment is om te kijken wat het effect van de bepaalde stof is op het aantal nakomelingen van de C.elegans. Het aantal nakomelingen werden geteld en is dus de data waar we naar gaan kijken. De data uit het experiment wordt in deze opdracht geanalyseerd.
+Het is belangrijk voor data om reproduceerbaar te zijn. De data van een uitgevoerd experiment wordt geanalyseerd om te laten zien dat de data reproduceerbaar is.
 
-*Het experiment is uitgevoerd door J. Louter (INT/ILC)*
+In het experiment wat gebruikt wordt voor deze opdracht zijn *C.elegans* nematoden bloodgesteld aan verschillende concentraties van verschillende stoffen. Het doel van het experiment is om te kijken wat het effect van de bepaalde stof is op het aantal nakomelingen van de *C.elegans*. Het aantal nakomelingen werden geteld en in een dataset geplaatst. De data uit het experiment wordt in deze opdracht geanalyseerd.
 
-De data die relevant is voor de uitwerking zijn:
+Het experiment is uitgevoerd door J. Louter (INT/ILC) en de data is afkomstig van het HU lectoraat Innovative Testing in Life Sciences & ChemistryDe data die relevant is voor de uitwerking zijn:
 
 -   De ruwe data, "RawData"
 
@@ -57,7 +57,7 @@ Celegans_dataset_no.na$compConcentration_offset <- Celegans_dataset_no.na$compCo
 #Plot met de aangepaste C.elegans data met het gebruik van geom jitter 
 Celegans_plot <- ggplot(data = Celegans_dataset_no.na, aes(x = compConcentration_offset, y = RawData)) +
   geom_jitter(aes(color = compName, shape = expType), size = 3, alpha = 0.8, width = 0.1, height = 0) +
-  scale_x_continuous(trans = "log10", breaks = c(0.001, 0.01, 0.1, 1, 10)) +
+  scale_x_log10(labels = label_log(digits = 2)) +
   labs(title = "Aantal nakomelingen C.elegans na incubatie",
        subtitle = "Aantal nakomelingen van de C.elegans na de incubatie met verschillende stoffen",
        y = "Aantal nakomelingen ",
@@ -67,7 +67,7 @@ Celegans_plot <- ggplot(data = Celegans_dataset_no.na, aes(x = compConcentration
 Celegans_plot
 ```
 
-Uit de bovenstaande grafiek is te zien dat de positieve controle voor het experiment Ethanol is en de negatieve controle S-medium. Dit kan ook gechekct worden met de volgende code:
+Uit de bovenstaande grafiek is te zien dat de positieve controle voor het experiment Ethanol is en de negatieve controle S-medium. Dit kan ook gecheckt worden met de volgende code:
 
 ```{r controle}
 #Check wat de negatieve controle is voor het experiment 
@@ -78,6 +78,14 @@ Celegans_dataset_no.na %>% filter(expType ==  "controlPositive") %>% select(comp
 
 #Voor de output wordt het slice command gebruikt, dit command is niet optioneel. 
 ```
+
+Het nut van de verschillende controles:
+
+-   Positieve controle: De positieve controle is de conditie waarbij er een positief resultaat wordt verwacht. In dit geval zal de controle wel een effect hebben op het aantal nakomelingen van de *C.elegans*
+
+-   Negatieve controle: De negatieve controle is de conditie waarbij er een negatief resultaat wordt verwacht. In dit geval zal de negatieve controle geen effect hebben op het aantal nakomelingen van de *C.elegans*
+
+-   Vehicle controle: De vehicle controle geeft aan of de substantie waarmee de getetste stoffen zijn opgelost invloed heeft op het experiment.
 
 Om de data verder te analyseren en om een conclusie te kunnen trekken moeten er nog een paar stappen gebeuren:
 
@@ -91,9 +99,10 @@ Om de data verder te analyseren en om een conclusie te kunnen trekken moeten er 
 
 -   Als er een significant verschil is ine en groep wordt er een Post hoc test uitgevoerd om te kijken over welke stof het gaat.
 
-Normalisatie: Als laatste stap wordt de data genormaliseerd op een manier waardoor de negatieve controle gelijk is aan 1 en de rest wordt uitgedrukt als een fractie daarvan. Dit wordt gedaan zodat de data makkelijker kan worden vergeleken met de negatieve controle om een verschil te zien in de grafiek. 
+Normalisatie: Als laatste stap wordt de data genormaliseerd op een manier waardoor de negatieve controle gelijk is aan 1 en de rest wordt uitgedrukt als een fractie daarvan. Dit wordt gedaan zodat de data makkelijker kan worden vergeleken met de negatieve controle om een verschil te zien in de grafiek.
 
-Eerst wordt de data veranderd zodat de negatieve controle gelijk is aan 1 en de ander data een fractie daarvan. 
+Eerst wordt de data veranderd zodat de negatieve controle gelijk is aan 1 en de ander data een fractie daarvan.
+
 ```{r}
 #Berekenen van het gemiddelde van de negatieve controle 
 Celegans_negative <- Celegans_dataset_no.na %>%
@@ -106,7 +115,7 @@ Celegans_dataset_norm <- Celegans_dataset_no.na
 Celegans_dataset_norm$RawData <- (Celegans_dataset_norm$RawData / mean_control_negative)
 ```
 
-Daarna wordt er een grafiek gemaakt van de genormaliseerde data. 
+Daarna wordt er een grafiek gemaakt van de genormaliseerde data.
 
 ```{r }
 Celegans_dataset_norm$compConcentration_offset <- Celegans_dataset_norm$compConcentration + 0.001
