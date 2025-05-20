@@ -5,6 +5,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 library(readxl)
 library(dplyr)
+library(scales)
 ```
 
 Het is belangrijk voor data om reproduceerbaar te zijn. De data van een uitgevoerd experiment wordt geanalyseerd om te laten zien dat de data reproduceerbaar is.
@@ -49,7 +50,7 @@ Celegans_dataset_no.na <- Celegans_dataset %>% filter(!is.na(RawData))
 
 Na het veranderen van de data wordt de data tegen elkaar uitgezet in een grafiek.
 
-```{r}
+```{r, message=FALSE}
 
 #Om ervoor te zorgen dat de dataset niet door 0 heen gaat voor de output van de grafiek 
 Celegans_dataset_no.na$compConcentration_offset <- Celegans_dataset_no.na$compConcentration + 0.001
@@ -60,8 +61,8 @@ Celegans_plot <- ggplot(data = Celegans_dataset_no.na, aes(x = compConcentration
   scale_x_log10(labels = label_log(digits = 2)) +
   labs(title = "Aantal nakomelingen C.elegans na incubatie",
        subtitle = "Aantal nakomelingen van de C.elegans na de incubatie met verschillende stoffen",
-       y = "Aantal nakomelingen ",
-       x = "Concentratie (nM) ") +
+       y = "Aantal nakomelingen",
+       x = "Log 10 concentratie (nM) ") +
   theme_classic()
 
 Celegans_plot
@@ -87,18 +88,6 @@ Het nut van de verschillende controles:
 
 -   Vehicle controle: De vehicle controle geeft aan of de substantie waarmee de getetste stoffen zijn opgelost invloed heeft op het experiment.
 
-Om de data verder te analyseren en om een conclusie te kunnen trekken moeten er nog een paar stappen gebeuren:
-
--   Om de verschillende stoffen met elkaar te vergelijken en om te weten of er een significant verschil is wordt er een ANOVA test gedaan.
-
--   Voordat de test gedaan word wordt eerst de data geplot in een bargraph met de standaardvariatie erbij om alvast een beeld te krijgen over de data.
-
--   Daarna wordt de data gecontroleerd op normaliteit doormiddel van een Shapiro-Wilk test.
-
--   Als de data normaal verdeeld is kan er een ANOVA test worden uitgevoerd
-
--   Als er een significant verschil is ine en groep wordt er een Post hoc test uitgevoerd om te kijken over welke stof het gaat.
-
 Normalisatie: Als laatste stap wordt de data genormaliseerd op een manier waardoor de negatieve controle gelijk is aan 1 en de rest wordt uitgedrukt als een fractie daarvan. Dit wordt gedaan zodat de data makkelijker kan worden vergeleken met de negatieve controle om een verschil te zien in de grafiek.
 
 Eerst wordt de data veranderd zodat de negatieve controle gelijk is aan 1 en de ander data een fractie daarvan.
@@ -122,7 +111,7 @@ Celegans_dataset_norm$compConcentration_offset <- Celegans_dataset_norm$compConc
 
 Celegans_plot_normalized <- ggplot(data = Celegans_dataset_norm, aes(x = compConcentration_offset, y = RawData)) +
   geom_jitter(aes(color = compName, shape = expType), size = 3, alpha = 0.8, width = 0.1, height = 0) +
-  scale_x_continuous(trans = "log10", breaks = c(0.001, 0.01, 0.1, 1, 10)) +
+  scale_x_log10(labels = label_log(digits = 2)) +
   labs(title = "Fractie van aantal nakomelingen C.elegans na incubatie",
        subtitle = "Aantal nakomelingen van de C.elegans na de incubatie met verschillende stoffen",
        y = "Fractie aantal nakomelingen",
@@ -130,3 +119,15 @@ Celegans_plot_normalized <- ggplot(data = Celegans_dataset_norm, aes(x = compCon
   theme_classic()
 Celegans_plot_normalized
 ```
+
+Om de data verder te analyseren en om een conclusie te kunnen trekken moeten er nog een paar stappen gebeuren:
+
+-   Om de verschillende stoffen met elkaar te vergelijken en om te weten of er een significant verschil is wordt er een ANOVA test gedaan.
+
+-   Voordat de test gedaan word wordt eerst de data geplot in een bargraph met de standaardvariatie erbij om alvast een beeld te krijgen over de data.
+
+-   Daarna wordt de data gecontroleerd op normaliteit doormiddel van een Shapiro-Wilk test.
+
+-   Als de data normaal verdeeld is kan er een ANOVA test worden uitgevoerd
+
+-   Als er een significant verschil is in een groep wordt er een Post hoc test uitgevoerd om te kijken over welke stof het gaat.

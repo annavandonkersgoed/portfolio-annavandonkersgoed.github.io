@@ -217,21 +217,21 @@ div.csl-indent {
 <li><p>Concentratie van de stof, “compConcentration”</p></li>
 </ul>
 <p>De eerste stap van de analyse is om het verkregen Excel door R te laten inlezen.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="reproduceren-van-een-data-analyse.html#cb1-1" tabindex="-1"></a>Celegans_dataset <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data-raw&quot;</span>, <span class="st">&quot;Data010&quot;</span>, <span class="st">&quot;CE.LIQ.FLOW.062_Tidydata.xlsx&quot;</span>), <span class="at">sheet =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="reproduceren-van-een-data-analyse.html#cb3-1" tabindex="-1"></a>Celegans_dataset <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data-raw&quot;</span>, <span class="st">&quot;Data010&quot;</span>, <span class="st">&quot;CE.LIQ.FLOW.062_Tidydata.xlsx&quot;</span>), <span class="at">sheet =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>Na het inlezen van de data wordt de data gecontroleerd op het type.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="reproduceren-van-een-data-analyse.html#cb2-1" tabindex="-1"></a><span class="fu">str</span>(Celegans_dataset)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="reproduceren-van-een-data-analyse.html#cb4-1" tabindex="-1"></a><span class="fu">str</span>(Celegans_dataset)</span></code></pre></div>
 <p>Er zijn een paar data type die veranderd moeten worden. De ruwe data is als double maar moet een integer worden aangezien het hele getallen zijn. De concentratie is als character weergeven maar moet als numeric omdat het decimalen heeft. Als laatst moet de naam van de stof worden veranderd naar een factor omdat het categorische data is.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="reproduceren-van-een-data-analyse.html#cb3-1" tabindex="-1"></a><span class="co">#RawData veranderen van dbl naar int </span></span>
-<span id="cb3-2"><a href="reproduceren-van-een-data-analyse.html#cb3-2" tabindex="-1"></a>Celegans_dataset<span class="sc">$</span>RawData <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(Celegans_dataset<span class="sc">$</span>RawData)</span>
-<span id="cb3-3"><a href="reproduceren-van-een-data-analyse.html#cb3-3" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="reproduceren-van-een-data-analyse.html#cb3-4" tabindex="-1"></a><span class="co">#compName veranderen van character naar factor </span></span>
-<span id="cb3-5"><a href="reproduceren-van-een-data-analyse.html#cb3-5" tabindex="-1"></a>Celegans_dataset<span class="sc">$</span>compName <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(Celegans_dataset<span class="sc">$</span>compName)</span>
-<span id="cb3-6"><a href="reproduceren-van-een-data-analyse.html#cb3-6" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="reproduceren-van-een-data-analyse.html#cb3-7" tabindex="-1"></a><span class="co">#compConcentration veranderen van character naar numeric </span></span>
-<span id="cb3-8"><a href="reproduceren-van-een-data-analyse.html#cb3-8" tabindex="-1"></a>Celegans_dataset<span class="sc">$</span>compConcentration <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(Celegans_dataset<span class="sc">$</span>compConcentration)</span></code></pre></div>
-<pre><code>## Warning: NAs introduced by coercion</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="reproduceren-van-een-data-analyse.html#cb5-1" tabindex="-1"></a><span class="co">#Verwijder NA waarden</span></span>
-<span id="cb5-2"><a href="reproduceren-van-een-data-analyse.html#cb5-2" tabindex="-1"></a>Celegans_dataset_no.na <span class="ot">&lt;-</span> Celegans_dataset <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(RawData))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="reproduceren-van-een-data-analyse.html#cb5-1" tabindex="-1"></a><span class="co">#RawData veranderen van dbl naar int </span></span>
+<span id="cb5-2"><a href="reproduceren-van-een-data-analyse.html#cb5-2" tabindex="-1"></a>Celegans_dataset<span class="sc">$</span>RawData <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(Celegans_dataset<span class="sc">$</span>RawData)</span>
+<span id="cb5-3"><a href="reproduceren-van-een-data-analyse.html#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="reproduceren-van-een-data-analyse.html#cb5-4" tabindex="-1"></a><span class="co">#compName veranderen van character naar factor </span></span>
+<span id="cb5-5"><a href="reproduceren-van-een-data-analyse.html#cb5-5" tabindex="-1"></a>Celegans_dataset<span class="sc">$</span>compName <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(Celegans_dataset<span class="sc">$</span>compName)</span>
+<span id="cb5-6"><a href="reproduceren-van-een-data-analyse.html#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="reproduceren-van-een-data-analyse.html#cb5-7" tabindex="-1"></a><span class="co">#compConcentration veranderen van character naar numeric </span></span>
+<span id="cb5-8"><a href="reproduceren-van-een-data-analyse.html#cb5-8" tabindex="-1"></a>Celegans_dataset<span class="sc">$</span>compConcentration <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(Celegans_dataset<span class="sc">$</span>compConcentration)</span>
+<span id="cb5-9"><a href="reproduceren-van-een-data-analyse.html#cb5-9" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="reproduceren-van-een-data-analyse.html#cb5-10" tabindex="-1"></a><span class="co">#Verwijder NA waarden</span></span>
+<span id="cb5-11"><a href="reproduceren-van-een-data-analyse.html#cb5-11" tabindex="-1"></a>Celegans_dataset_no.na <span class="ot">&lt;-</span> Celegans_dataset <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(RawData))</span></code></pre></div>
 <p>Na het veranderen van de data wordt de data tegen elkaar uitgezet in een grafiek.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="reproduceren-van-een-data-analyse.html#cb6-1" tabindex="-1"></a><span class="co">#Om ervoor te zorgen dat de dataset niet door 0 heen gaat voor de output van de grafiek </span></span>
 <span id="cb6-2"><a href="reproduceren-van-een-data-analyse.html#cb6-2" tabindex="-1"></a>Celegans_dataset_no.na<span class="sc">$</span>compConcentration_offset <span class="ot">&lt;-</span> Celegans_dataset_no.na<span class="sc">$</span>compConcentration <span class="sc">+</span> <span class="fl">0.001</span></span>
@@ -239,71 +239,67 @@ div.csl-indent {
 <span id="cb6-4"><a href="reproduceren-van-een-data-analyse.html#cb6-4" tabindex="-1"></a><span class="co">#Plot met de aangepaste C.elegans data met het gebruik van geom jitter </span></span>
 <span id="cb6-5"><a href="reproduceren-van-een-data-analyse.html#cb6-5" tabindex="-1"></a>Celegans_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> Celegans_dataset_no.na, <span class="fu">aes</span>(<span class="at">x =</span> compConcentration_offset, <span class="at">y =</span> RawData)) <span class="sc">+</span></span>
 <span id="cb6-6"><a href="reproduceren-van-een-data-analyse.html#cb6-6" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> compName, <span class="at">shape =</span> expType), <span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">height =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb6-7"><a href="reproduceren-van-een-data-analyse.html#cb6-7" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb6-7"><a href="reproduceren-van-een-data-analyse.html#cb6-7" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> <span class="fu">label_log</span>(<span class="at">digits =</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
 <span id="cb6-8"><a href="reproduceren-van-een-data-analyse.html#cb6-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Aantal nakomelingen C.elegans na incubatie&quot;</span>,</span>
 <span id="cb6-9"><a href="reproduceren-van-een-data-analyse.html#cb6-9" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Aantal nakomelingen van de C.elegans na de incubatie met verschillende stoffen&quot;</span>,</span>
-<span id="cb6-10"><a href="reproduceren-van-een-data-analyse.html#cb6-10" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Aantal nakomelingen &quot;</span>,</span>
-<span id="cb6-11"><a href="reproduceren-van-een-data-analyse.html#cb6-11" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Concentratie (nM) &quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="reproduceren-van-een-data-analyse.html#cb6-10" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Aantal nakomelingen&quot;</span>,</span>
+<span id="cb6-11"><a href="reproduceren-van-een-data-analyse.html#cb6-11" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Log 10 concentratie (nM) &quot;</span>) <span class="sc">+</span></span>
 <span id="cb6-12"><a href="reproduceren-van-een-data-analyse.html#cb6-12" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
 <span id="cb6-13"><a href="reproduceren-van-een-data-analyse.html#cb6-13" tabindex="-1"></a></span>
 <span id="cb6-14"><a href="reproduceren-van-een-data-analyse.html#cb6-14" tabindex="-1"></a>Celegans_plot</span></code></pre></div>
-<pre><code>## Warning: Removed 1 row containing missing values or values outside the scale range
-## (`geom_point()`).</code></pre>
-<p><img src="Portfolio_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="Portfolio_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Uit de bovenstaande grafiek is te zien dat de positieve controle voor het experiment Ethanol is en de negatieve controle S-medium. Dit kan ook gecheckt worden met de volgende code:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="reproduceren-van-een-data-analyse.html#cb8-1" tabindex="-1"></a><span class="co">#Check wat de negatieve controle is voor het experiment </span></span>
-<span id="cb8-2"><a href="reproduceren-van-een-data-analyse.html#cb8-2" tabindex="-1"></a>Celegans_dataset_no.na <span class="sc">%&gt;%</span> <span class="fu">filter</span>(expType <span class="sc">==</span>  <span class="st">&quot;controlNegative&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(compName) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="reproduceren-van-een-data-analyse.html#cb7-1" tabindex="-1"></a><span class="co">#Check wat de negatieve controle is voor het experiment </span></span>
+<span id="cb7-2"><a href="reproduceren-van-een-data-analyse.html#cb7-2" tabindex="-1"></a>Celegans_dataset_no.na <span class="sc">%&gt;%</span> <span class="fu">filter</span>(expType <span class="sc">==</span>  <span class="st">&quot;controlNegative&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(compName) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##   compName
 ##   &lt;fct&gt;   
 ## 1 S-medium</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="reproduceren-van-een-data-analyse.html#cb10-1" tabindex="-1"></a><span class="co">#check wat de positieve controle is voor het experiment </span></span>
-<span id="cb10-2"><a href="reproduceren-van-een-data-analyse.html#cb10-2" tabindex="-1"></a>Celegans_dataset_no.na <span class="sc">%&gt;%</span> <span class="fu">filter</span>(expType <span class="sc">==</span>  <span class="st">&quot;controlPositive&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(compName) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="reproduceren-van-een-data-analyse.html#cb9-1" tabindex="-1"></a><span class="co">#check wat de positieve controle is voor het experiment </span></span>
+<span id="cb9-2"><a href="reproduceren-van-een-data-analyse.html#cb9-2" tabindex="-1"></a>Celegans_dataset_no.na <span class="sc">%&gt;%</span> <span class="fu">filter</span>(expType <span class="sc">==</span>  <span class="st">&quot;controlPositive&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(compName) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##   compName
 ##   &lt;fct&gt;   
 ## 1 Ethanol</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="reproduceren-van-een-data-analyse.html#cb12-1" tabindex="-1"></a><span class="co">#Voor de output wordt het slice command gebruikt, dit command is niet optioneel. </span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="reproduceren-van-een-data-analyse.html#cb11-1" tabindex="-1"></a><span class="co">#Voor de output wordt het slice command gebruikt, dit command is niet optioneel. </span></span></code></pre></div>
 <p>Het nut van de verschillende controles:</p>
 <ul>
 <li><p>Positieve controle: De positieve controle is de conditie waarbij er een positief resultaat wordt verwacht. In dit geval zal de controle wel een effect hebben op het aantal nakomelingen van de <em>C.elegans</em></p></li>
 <li><p>Negatieve controle: De negatieve controle is de conditie waarbij er een negatief resultaat wordt verwacht. In dit geval zal de negatieve controle geen effect hebben op het aantal nakomelingen van de <em>C.elegans</em></p></li>
 <li><p>Vehicle controle: De vehicle controle geeft aan of de substantie waarmee de getetste stoffen zijn opgelost invloed heeft op het experiment.</p></li>
 </ul>
+<p>Normalisatie: Als laatste stap wordt de data genormaliseerd op een manier waardoor de negatieve controle gelijk is aan 1 en de rest wordt uitgedrukt als een fractie daarvan. Dit wordt gedaan zodat de data makkelijker kan worden vergeleken met de negatieve controle om een verschil te zien in de grafiek.</p>
+<p>Eerst wordt de data veranderd zodat de negatieve controle gelijk is aan 1 en de ander data een fractie daarvan.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="reproduceren-van-een-data-analyse.html#cb12-1" tabindex="-1"></a><span class="co">#Berekenen van het gemiddelde van de negatieve controle </span></span>
+<span id="cb12-2"><a href="reproduceren-van-een-data-analyse.html#cb12-2" tabindex="-1"></a>Celegans_negative <span class="ot">&lt;-</span> Celegans_dataset_no.na <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="reproduceren-van-een-data-analyse.html#cb12-3" tabindex="-1"></a>  <span class="fu">filter</span>(expType <span class="sc">==</span> <span class="st">&quot;controlNegative&quot;</span>)</span>
+<span id="cb12-4"><a href="reproduceren-van-een-data-analyse.html#cb12-4" tabindex="-1"></a>mean_control_negative <span class="ot">&lt;-</span> <span class="fu">mean</span>(Celegans_negative<span class="sc">$</span>RawData)</span>
+<span id="cb12-5"><a href="reproduceren-van-een-data-analyse.html#cb12-5" tabindex="-1"></a><span class="co">#Gemiddelde van de negatieve controle is 85.9</span></span>
+<span id="cb12-6"><a href="reproduceren-van-een-data-analyse.html#cb12-6" tabindex="-1"></a>Celegans_dataset_norm <span class="ot">&lt;-</span> Celegans_dataset_no.na</span>
+<span id="cb12-7"><a href="reproduceren-van-een-data-analyse.html#cb12-7" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="reproduceren-van-een-data-analyse.html#cb12-8" tabindex="-1"></a><span class="co">#Zorg ervoor dat de data 1 is door alle waarden door het gemiddelde te delen </span></span>
+<span id="cb12-9"><a href="reproduceren-van-een-data-analyse.html#cb12-9" tabindex="-1"></a>Celegans_dataset_norm<span class="sc">$</span>RawData <span class="ot">&lt;-</span> (Celegans_dataset_norm<span class="sc">$</span>RawData <span class="sc">/</span> mean_control_negative)</span></code></pre></div>
+<p>Daarna wordt er een grafiek gemaakt van de genormaliseerde data.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="reproduceren-van-een-data-analyse.html#cb13-1" tabindex="-1"></a>Celegans_dataset_norm<span class="sc">$</span>compConcentration_offset <span class="ot">&lt;-</span> Celegans_dataset_norm<span class="sc">$</span>compConcentration <span class="sc">+</span> <span class="fl">0.001</span></span>
+<span id="cb13-2"><a href="reproduceren-van-een-data-analyse.html#cb13-2" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="reproduceren-van-een-data-analyse.html#cb13-3" tabindex="-1"></a>Celegans_plot_normalized <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> Celegans_dataset_norm, <span class="fu">aes</span>(<span class="at">x =</span> compConcentration_offset, <span class="at">y =</span> RawData)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="reproduceren-van-een-data-analyse.html#cb13-4" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> compName, <span class="at">shape =</span> expType), <span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">height =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="reproduceren-van-een-data-analyse.html#cb13-5" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> <span class="fu">label_log</span>(<span class="at">digits =</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="reproduceren-van-een-data-analyse.html#cb13-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Fractie van aantal nakomelingen C.elegans na incubatie&quot;</span>,</span>
+<span id="cb13-7"><a href="reproduceren-van-een-data-analyse.html#cb13-7" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Aantal nakomelingen van de C.elegans na de incubatie met verschillende stoffen&quot;</span>,</span>
+<span id="cb13-8"><a href="reproduceren-van-een-data-analyse.html#cb13-8" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Fractie aantal nakomelingen&quot;</span>,</span>
+<span id="cb13-9"><a href="reproduceren-van-een-data-analyse.html#cb13-9" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Concentratie (nM) &quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="reproduceren-van-een-data-analyse.html#cb13-10" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb13-11"><a href="reproduceren-van-een-data-analyse.html#cb13-11" tabindex="-1"></a>Celegans_plot_normalized</span></code></pre></div>
+<p><img src="Portfolio_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Om de data verder te analyseren en om een conclusie te kunnen trekken moeten er nog een paar stappen gebeuren:</p>
 <ul>
 <li><p>Om de verschillende stoffen met elkaar te vergelijken en om te weten of er een significant verschil is wordt er een ANOVA test gedaan.</p></li>
 <li><p>Voordat de test gedaan word wordt eerst de data geplot in een bargraph met de standaardvariatie erbij om alvast een beeld te krijgen over de data.</p></li>
 <li><p>Daarna wordt de data gecontroleerd op normaliteit doormiddel van een Shapiro-Wilk test.</p></li>
 <li><p>Als de data normaal verdeeld is kan er een ANOVA test worden uitgevoerd</p></li>
-<li><p>Als er een significant verschil is ine en groep wordt er een Post hoc test uitgevoerd om te kijken over welke stof het gaat.</p></li>
+<li><p>Als er een significant verschil is in een groep wordt er een Post hoc test uitgevoerd om te kijken over welke stof het gaat.</p></li>
 </ul>
-<p>Normalisatie: Als laatste stap wordt de data genormaliseerd op een manier waardoor de negatieve controle gelijk is aan 1 en de rest wordt uitgedrukt als een fractie daarvan. Dit wordt gedaan zodat de data makkelijker kan worden vergeleken met de negatieve controle om een verschil te zien in de grafiek.</p>
-<p>Eerst wordt de data veranderd zodat de negatieve controle gelijk is aan 1 en de ander data een fractie daarvan.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="reproduceren-van-een-data-analyse.html#cb13-1" tabindex="-1"></a><span class="co">#Berekenen van het gemiddelde van de negatieve controle </span></span>
-<span id="cb13-2"><a href="reproduceren-van-een-data-analyse.html#cb13-2" tabindex="-1"></a>Celegans_negative <span class="ot">&lt;-</span> Celegans_dataset_no.na <span class="sc">%&gt;%</span></span>
-<span id="cb13-3"><a href="reproduceren-van-een-data-analyse.html#cb13-3" tabindex="-1"></a>  <span class="fu">filter</span>(expType <span class="sc">==</span> <span class="st">&quot;controlNegative&quot;</span>)</span>
-<span id="cb13-4"><a href="reproduceren-van-een-data-analyse.html#cb13-4" tabindex="-1"></a>mean_control_negative <span class="ot">&lt;-</span> <span class="fu">mean</span>(Celegans_negative<span class="sc">$</span>RawData)</span>
-<span id="cb13-5"><a href="reproduceren-van-een-data-analyse.html#cb13-5" tabindex="-1"></a><span class="co">#Gemiddelde van de negatieve controle is 85.9</span></span>
-<span id="cb13-6"><a href="reproduceren-van-een-data-analyse.html#cb13-6" tabindex="-1"></a>Celegans_dataset_norm <span class="ot">&lt;-</span> Celegans_dataset_no.na</span>
-<span id="cb13-7"><a href="reproduceren-van-een-data-analyse.html#cb13-7" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="reproduceren-van-een-data-analyse.html#cb13-8" tabindex="-1"></a><span class="co">#Zorg ervoor dat de data 1 is door alle waarden door het gemiddelde te delen </span></span>
-<span id="cb13-9"><a href="reproduceren-van-een-data-analyse.html#cb13-9" tabindex="-1"></a>Celegans_dataset_norm<span class="sc">$</span>RawData <span class="ot">&lt;-</span> (Celegans_dataset_norm<span class="sc">$</span>RawData <span class="sc">/</span> mean_control_negative)</span></code></pre></div>
-<p>Daarna wordt er een grafiek gemaakt van de genormaliseerde data.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="reproduceren-van-een-data-analyse.html#cb14-1" tabindex="-1"></a>Celegans_dataset_norm<span class="sc">$</span>compConcentration_offset <span class="ot">&lt;-</span> Celegans_dataset_norm<span class="sc">$</span>compConcentration <span class="sc">+</span> <span class="fl">0.001</span></span>
-<span id="cb14-2"><a href="reproduceren-van-een-data-analyse.html#cb14-2" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="reproduceren-van-een-data-analyse.html#cb14-3" tabindex="-1"></a>Celegans_plot_normalized <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> Celegans_dataset_norm, <span class="fu">aes</span>(<span class="at">x =</span> compConcentration_offset, <span class="at">y =</span> RawData)) <span class="sc">+</span></span>
-<span id="cb14-4"><a href="reproduceren-van-een-data-analyse.html#cb14-4" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> compName, <span class="at">shape =</span> expType), <span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">height =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb14-5"><a href="reproduceren-van-een-data-analyse.html#cb14-5" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log10&quot;</span>, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
-<span id="cb14-6"><a href="reproduceren-van-een-data-analyse.html#cb14-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Fractie van aantal nakomelingen C.elegans na incubatie&quot;</span>,</span>
-<span id="cb14-7"><a href="reproduceren-van-een-data-analyse.html#cb14-7" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Aantal nakomelingen van de C.elegans na de incubatie met verschillende stoffen&quot;</span>,</span>
-<span id="cb14-8"><a href="reproduceren-van-een-data-analyse.html#cb14-8" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Fractie aantal nakomelingen&quot;</span>,</span>
-<span id="cb14-9"><a href="reproduceren-van-een-data-analyse.html#cb14-9" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Concentratie (nM) &quot;</span>) <span class="sc">+</span></span>
-<span id="cb14-10"><a href="reproduceren-van-een-data-analyse.html#cb14-10" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb14-11"><a href="reproduceren-van-een-data-analyse.html#cb14-11" tabindex="-1"></a>Celegans_plot_normalized</span></code></pre></div>
-<pre><code>## Warning: Removed 1 row containing missing values or values outside the scale range
-## (`geom_point()`).</code></pre>
-<p><img src="Portfolio_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 
 </div>
             </section>
