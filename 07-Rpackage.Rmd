@@ -1,6 +1,6 @@
 # R package
 
-R packages zijn functies die makkelijk opgeroepen en gebruikt kunnen worden. In deze opdracht wordt er zelf een R package gemaakt. In de package zitten 4 fucnties en een dataset.
+R packages zijn functies die makkelijk opgeroepen en gebruikt kunnen worden. In deze opdracht wordt er zelf een R package gemaakt. In de package zitten 4 fucnties en een dataset. De functies zijn simepele R functies, zoals het veranderen van het datatype van een kolom. 
 
 De package heet portfunctions (portfolio functions) en is te installeren door de volgende code:
 
@@ -16,7 +16,7 @@ de package heeft meerdere functies met code die in de bestanden van dit portfoli
 
 -   NotZero: Zorgt ervoor bij het maken van een grafiek dart de waarden niet door 0 gaan.
 
--   Normalization: Normaliseerd data van een specifieke waarden uit een kolom.
+-   ChangeColname: Verandert de kolomnaam naar een nieuwe naam.
 
 Dataset in de package: LandBird_Monitoring
 [Link naar dataset](https://catalog.data.gov/dataset/ncrn-bird-monitoring-data-2007-2017)
