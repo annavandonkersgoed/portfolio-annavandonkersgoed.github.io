@@ -14,7 +14,7 @@ de package heeft meerdere functies met code die in de bestanden van dit portfoli
 
 -   RemoveNA: Verwijderd NA waarden uit een kolom en zorgt ervoor dat de rijen met die waarden ook verwijderd worden.
 
--   NotZero: Zorgt ervoor bij het maken van een grafiek dart de waarden niet door 0 gaan.
+-   NotZero: Zorgt ervoor bij het maken van een grafiek dat de waarden niet door 0 gaan.
 
 -   ChangeColname: Verandert de kolomnaam naar een nieuwe naam.
 
@@ -22,3 +22,8 @@ Dataset in de package: LandBird_Monitoring
 [Link naar dataset](https://catalog.data.gov/dataset/ncrn-bird-monitoring-data-2007-2017)
 
 [Link naar repository](https://github.com/annavandonkersgoed/portfunctions.git)
+
+De vignette kan bekeken worden door de volgende code: 
+```{r, eval = FALSE}
+browseVignettes("portfunctions")
+```

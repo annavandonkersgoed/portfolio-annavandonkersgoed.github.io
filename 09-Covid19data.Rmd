@@ -16,7 +16,7 @@ params:
 
 -   year: 2022
 
--   months: [1, 2, 3]
+-   months: [1, 2, 3, 4, 5, 6]
 
 De gebruikte data is COVID-19 data [Link naar data](https://www.ecdc.europa.eu/en/publications-data/data-daily-new-cases-covid-19-eueea-country)
 
